@@ -1,1 +1,54 @@
 @charset "utf-8";
+
+.alc-cards{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alc-card {
+  display: inline-block;
+  margin-top: 10px;
+  
+  .alc-card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: #fff;
+    padding: 16px;
+  }
+}
+
+.alc-card-left{
+  width: 350px;
+}
+
+.alc-card-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price-mark{
+  margin-left: -14px;
+  margin-right: 4px;
+}
+
+.data-block{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 8px;
+  width: 800px;
+  margin: 40px auto 0;
+}
+
+.data-right{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
