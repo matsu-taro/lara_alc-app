@@ -12,13 +12,16 @@
 
         <!-- Navigation Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex pb-1">
-          <x-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
-            {{ __('インデックス') }}
-          </x-nav-link>
           <x-nav-link :href="route('alcohols.create')" :active="request()->routeIs('alcohols.create')">
             {{ __('新規作成') }}
           </x-nav-link>
+          <x-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
+            {{ __('インデックス') }}
+          </x-nav-link>
           <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{ __('画像から探す') }}
+          </x-nav-link>
+          <x-nav-link :href="route('alcohols.dust-box')" :active="request()->routeIs('alcohols.dust-box')">
             {{ __('ゴミ箱') }}
           </x-nav-link>
         </div>

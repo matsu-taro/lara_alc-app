@@ -17,18 +17,21 @@
       <div class="data-block">
         <div class="data-left">
           <div class="">
-            <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" class="">
+            <p>画像を3枚まで貼り付け可能です！</p>
+            <div class="image-select">
+              <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg">
+            </div>
           </div>
-          <div style="overflow-x: scroll;width:200px;height: 350px;margin-top:20px;">
-            <ul style="display:flex; gap:10px;">
-              <li style="flex-shrink: 0;">
-                <img src="{{ asset('storage/noimage.png') }}" alt="" style="width:200px;">
+          <div class="image-area">
+            <ul>
+              <li>
+                <img src="{{ asset('storage/noimage.png') }}" alt="">
               </li>
-              <li style="flex-shrink: 0;">
-                <img src="{{ asset('storage/noimage.png') }}" alt="" style="width:200px;">
+              <li>
+                <img src="{{ asset('storage/noimage.png') }}" alt="">
               </li>
-              <li style="flex-shrink: 0;">
-                <img src="{{ asset('storage/noimage.png') }}" alt="" style="width:200px;">
+              <li>
+                <img src="{{ asset('storage/noimage.png') }}" alt="">
               </li>
             </ul>
           </div>
@@ -37,26 +40,27 @@
         <div class="data-right">
           <div class="">
             <p>種類</p>
-            <select name="status" class="">
+            <select name="type" class="">
               <option value="">選択してください</option>
-              <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>ビール</option>
-              <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>サワー・酎ハイ</option>
-              <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>ワイン</option>
-              <option value="4" {{ old('status') == 4 ? 'selected' : '' }}>日本酒</option>
-              <option value="5" {{ old('status') == 5 ? 'selected' : '' }}>焼酎</option>
-              <option value="6" {{ old('status') == 6 ? 'selected' : '' }}>洋酒</option>
-              <option value="7" {{ old('status') == 7 ? 'selected' : '' }}>その他</option>
+              <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>ビール</option>
+              <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>サワー・酎ハイ</option>
+              <option value="3" {{ old('type') == 3 ? 'selected' : '' }}>ワイン</option>
+              <option value="4" {{ old('type') == 4 ? 'selected' : '' }}>日本酒</option>
+              <option value="5" {{ old('type') == 5 ? 'selected' : '' }}>焼酎</option>
+              <option value="6" {{ old('type') == 6 ? 'selected' : '' }}>洋酒</option>
+              <option value="7" {{ old('type') == 7 ? 'selected' : '' }}>その他</option>
             </select>
           </div>
 
           <div class="">
-            <label for="name" class="leading-7 text-md text-black-600">名前</label><br>
-            <input type="text" name="name" placeholder="お酒の名前" value="{{ old('name') }}" id="name">
+            <label for="alc_name" class="leading-7 text-md text-black-600">名前</label><br>
+            <input type="text" name="alc_name" placeholder="お酒の名前" value="{{ old('alc_name') }}" id="name">
           </div>
 
           <div>
             <label for="price" class="leading-7 text-md text-black-600">値段</label><br>
-            <span class="price-mark">¥</span><input type="number" name="price" value="{{ old('price') }}" id="price">
+            <span class="price-mark">¥</span><input type="number" name="price" value="{{ old('price') }}"
+              id="price">
           </div>
 
           <div class="">
@@ -66,9 +70,9 @@
 
             <select name="place" class="">
               <option value="0">過去のデータから選ぶ</option>
-              {{-- @foreach ($users as $user) --}}
-              {{-- <option value="{{ $user->name }}">{{ $user->name }}</option> --}}
-              {{-- @endforeach --}}
+              @foreach ($places as $place)
+                <option value="{{ $place->place }}">{{ $place->place }}</option>
+              @endforeach
             </select>
           </div>
 

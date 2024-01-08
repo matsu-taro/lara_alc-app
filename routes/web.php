@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlcoholController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,33 @@ Route::get('/dashboard', function () {
 Route::resource('alcohols', AlcoholController::class)
     ->except('show');
 
+Route::prefix('alcohols')
+    ->controller(AlcoholController::class)
+    ->name('alcohols.')
+    ->group(function () {
+        Route::get('/dust-box', 'dustBox')
+            ->name('dust-box');
+        Route::get('{alcohol}/restore', 'restore')
+            ->name('restore');
+        Route::post('{alcohol}/dust-box_clear', 'dustBoxClear')
+            ->name('dust-box_clear');
+    });
+
+Route::prefix('images')
+    ->controller(ImageController::class)
+    ->name('images.')
+    ->group(function () {
+        Route::post('/index', 'index')
+            ->name('index');
+        Route::post('{image}/store', 'store')
+            ->name('store');
+    });
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

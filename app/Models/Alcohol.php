@@ -12,6 +12,15 @@ class Alcohol extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'alc_name',
+        'price',
+        'place',
+        'status',
+        'type',
+        'memo',
+    ];
 
     public function user()
     {

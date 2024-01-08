@@ -34,6 +34,46 @@ class AlcSeeder extends Seeder
                 'memo' =>  '上野店',
                 'created_at' => '2024/1/1 12:00:00'
             ],
+            [
+                'user_id' => '1',
+                'alc_name' => '本搾りグレフル',
+                'price' =>  '400',
+                'place' =>  'キリンシティ',
+                'type' =>  '2',
+                'status' =>  '1',
+                'memo' =>  '上野店',
+                'created_at' => '2024/1/1 12:00:00'
+            ],
+            [
+                'user_id' => '1',
+                'alc_name' => '本搾りピングレ',
+                'price' =>  '400',
+                'place' =>  'キリンシティ',
+                'type' =>  '2',
+                'status' =>  '1',
+                'memo' =>  '上野店',
+                'created_at' => '2024/1/1 12:00:00'
+            ],
+            [
+                'user_id' => '1',
+                'alc_name' => 'シャブリ 2018',
+                'price' =>  '400',
+                'place' =>  'マティエール',
+                'type' =>  '3',
+                'status' =>  '1',
+                'memo' =>  '',
+                'created_at' => '2024/1/1 12:00:00'
+            ],
+            [
+                'user_id' => '1',
+                'alc_name' => 'リースリング 2018',
+                'price' =>  '400',
+                'place' =>  'マティエール',
+                'type' =>  '3',
+                'status' =>  '1',
+                'memo' =>  '',
+                'created_at' => '2024/1/1 12:00:00'
+            ],
         ]);
     }
 }
