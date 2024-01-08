@@ -14,11 +14,22 @@
 
               <div class="image-area">
                 <ul>
-                  @foreach ($images->whereIn('alcohol_id', $deleted_data->id) as $image)
+                  @php
+                    $alcoholImages = $images->where('alcohol_id', $deleted_data->id)->take(3); // 特定のアルコールに関連する画像を取得（最大3枚）
+                    $imageCount = count($alcoholImages);
+                  @endphp
+
+                  @foreach ($alcoholImages as $image)
                     <li>
                       <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
                     </li>
                   @endforeach
+
+                  @for ($i = $imageCount; $i < 3; $i++)
+                    <li>
+                      <img src="{{ asset('storage/no-image.jpg') }}" alt="">
+                    </li>
+                  @endfor
                 </ul>
               </div>
             </div>

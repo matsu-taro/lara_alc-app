@@ -1,16 +1,5 @@
 <x-app-layout>
   <main class="main">
-
-    {{-- @if ($errors->any())
-      <div class="validation">
-        <ul class="font-medium text-red-600">
-          @foreach ($errors->all() as $error)
-            <li>・{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif --}}
-
     <form action="{{ route('alcohols.store') }}" method="post" enctype="multipart/form-data">
       @csrf
 
@@ -18,6 +7,9 @@
         <div class="data-left">
           <div class="">
             <p>画像を3枚まで貼り付け可能です！</p>
+            @error('files')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
             <div class="image-select">
               <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg">
             </div>
@@ -25,13 +17,13 @@
           <div class="image-area">
             <ul>
               <li>
-                <img src="{{ asset('storage/noimage.png') }}" alt="">
+                <img src="{{ asset('storage/no-image.jpg') }}" alt="">
               </li>
               <li>
-                <img src="{{ asset('storage/noimage.png') }}" alt="">
+                <img src="{{ asset('storage/no-image.jpg') }}" alt="">
               </li>
               <li>
-                <img src="{{ asset('storage/noimage.png') }}" alt="">
+                <img src="{{ asset('storage/no-image.jpg') }}" alt="">
               </li>
             </ul>
           </div>
@@ -39,8 +31,11 @@
 
         <div class="data-right">
           <div class="">
-            <p>種類</p>
-            <select name="type" class="">
+            <span>種類</span>
+            @error('type')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            <select name="type" class="" style="display: block">
               <option value="">選択してください</option>
               <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>ビール</option>
               <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>サワー・酎ハイ</option>
@@ -53,7 +48,11 @@
           </div>
 
           <div class="">
-            <label for="alc_name" class="leading-7 text-md text-black-600">名前</label><br>
+            <label for="alc_name" class="leading-7 text-md text-black-600">名前</label>
+            @error('alc_name')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            <br>
             <input type="text" name="alc_name" placeholder="お酒の名前" value="{{ old('alc_name') }}" id="name">
           </div>
 
@@ -64,7 +63,11 @@
           </div>
 
           <div class="">
-            <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店</label><br>
+            <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店</label>
+            @error('place')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            <br>
             <input id="new_place" type="text" name="new_place" placeholder="新しく追加" value="{{ old('new_place') }}"
               class="">
 
@@ -86,7 +89,7 @@
           </div>
 
           <div class="">
-            <textarea name="memo" value="" cols="50%" rows="2" placeholder="メモ">{{ old('memo') }}</textarea>
+            <textarea name="memo" value="" cols="50%" rows="2" placeholder="メモ(任意)">{{ old('memo') }}</textarea>
           </div>
 
           <div class="p-2 w-full flex my-8 gap-10">
@@ -98,5 +101,6 @@
         </div>
       </div>
     </form>
+
   </main>
 </x-app-layout>

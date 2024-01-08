@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('alc_name', 100)->nullable();
+            $table->string('alc_name', 100);
             $table->integer('price')->nullable();
             $table->string('place', 1000);
             $table->tinyInteger('type');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
 use App\Models\Alcohol;
 use App\Models\Image;
 use App\Models\User;
@@ -27,7 +28,7 @@ class AlcoholController extends Controller
     return view('alcohols.create', compact('places'));
   }
 
-  public function store(Request $request)
+  public function store(StoreRequest $request)
   {
     $newPlace = $request->new_place;
     $selectedPlace = $request->place;
@@ -94,19 +95,44 @@ class AlcoholController extends Controller
   }
 
 
-  public function update(Request $request, string $id)
+  public function update(StoreRequest $request, string $id)
   {
     $update_data = Alcohol::find($id);
 
     $update_data->user_id = Auth::id();
     $update_data->alc_name = $request->alc_name;
     $update_data->price = $request->price;
-    $update_data->place = $request->place;
     $update_data->type = $request->type;
     $update_data->status = $request->status;
     $update_data->memo = $request->memo;
 
+    $newPlace = $request->new_place;
+    $selectedPlace = $request->place;
+    if ($newPlace) {
+      $update_data->place = $newPlace;
+    } elseif ($selectedPlace) {
+      $update_data->place = $selectedPlace;
+    }
+
     $update_data->save();
+
+    if ($request->hasFile('files')) {
+      $files = $request->file('files');
+
+      foreach ($files as $file) {
+        $randFileName = uniqid();
+        $extension = $file->getClientOriginalExtension(); //拡張子を抽出
+        $originalFileName = $randFileName . '.' . $extension;
+
+        $path = $file->storeAs('public/' . $originalFileName);
+
+        Image::create([
+          'alcohol_id' => $update_data->id,
+          'original_file_name' => $originalFileName,
+          'path' => $path,
+        ]);
+      };
+    };
 
     return to_route('alcohols.index');
   }
@@ -120,6 +146,7 @@ class AlcoholController extends Controller
     return to_route('alcohols.index');
   }
 
+
   public function dustBox()
   {
     $deleted_datas = Alcohol::onlyTrashed()->paginate(10);
@@ -129,6 +156,7 @@ class AlcoholController extends Controller
     return view('alcohols.dust-box', compact('deleted_datas', 'images'));
   }
 
+
   public function restore($id)
   {
     $onlyTrashed = Alcohol::onlyTrashed()->find($id);
@@ -136,6 +164,7 @@ class AlcoholController extends Controller
 
     return to_route('alcohols.dust-box');
   }
+
 
   public function dustBoxClear(string $id)
   {

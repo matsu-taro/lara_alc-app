@@ -47,6 +47,8 @@ Route::prefix('images')
             ->name('index');
         Route::post('{image}/store', 'store')
             ->name('store');
+        Route::get('{image}/destroy', 'destroy')
+            ->name('destroy');
     });
 
 

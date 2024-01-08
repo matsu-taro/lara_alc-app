@@ -1,16 +1,6 @@
 <x-app-layout>
   <main class="main">
 
-    {{-- @if ($errors->any())
-      <div class="validation">
-        <ul class="font-medium text-red-600">
-          @foreach ($errors->all() as $error)
-            <li>・{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif --}}
-
     <form action="{{ route('alcohols.update', ['alcohol' => $alcohol->id]) }}" method="post"
       enctype="multipart/form-data">
       @method('put')
@@ -20,25 +10,43 @@
         <div class="data-left">
           <div class="">
             <p>画像を3枚まで貼り付け可能です</p>
+            @error('files')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
             <div class="image-select">
               <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" class="">
             </div>
           </div>
           <div class="image-area">
             <ul>
-              @foreach ($images as $image)
-                <li>
-                  <img src="{{ asset('storage/'.$image->original_file_name) }}" alt="">
+              @php
+                $alcoholImages = $images->where('alcohol_id', $alcohol->id)->take(3); // 特定のアルコールに関連する画像を取得（最大3枚）
+                $imageCount = count($alcoholImages);
+                $displayedImageCount = min($imageCount, 3);
+              @endphp
+              @foreach ($alcoholImages as $image)
+                <li class="editP-image">
+                  <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
+                  <a href="{{ route('images.destroy',['image'=>$image->id]) }}" class="editP-deleteBtn">削除</a>
                 </li>
               @endforeach
+
+              @for ($i = $imageCount; $i < 3; $i++)
+                <li>
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="">
+                </li>
+              @endfor
             </ul>
           </div>
         </div>
 
         <div class="data-right">
           <div class="">
-            <p>種類</p>
-            <select name="type" class="">
+            <span>種類</span>
+            @error('type')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            <select name="type" class="" style="display: block">
               <option value="">選択してください</option>
               <option value="1" @if ($alcohol->type == '1') selected @endif>ビール</option>
               <option value="2" @if ($alcohol->type == '2') selected @endif>サワー・酎ハイ</option>
@@ -51,7 +59,11 @@
           </div>
 
           <div class="">
-            <label for="alc_name" class="leading-7 text-md text-black-600">名前</label><br>
+            <label for="alc_name" class="leading-7 text-md text-black-600">名前</label>
+            @error('alc_name')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            <br>
             <input type="text" name="alc_name" placeholder="お酒の名前" value="{{ $alcohol->alc_name }}" id="name">
           </div>
 
@@ -62,14 +74,20 @@
           </div>
 
           <div class="">
-            <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店</label><br>
+            <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店</label>
+            @error('place')
+              <span class="text-red-600">{{ $message }}</span>
+            @enderror
+            <br>
             <input id="new_place" type="text" name="new_place" placeholder="新しく追加" value="{{ old('new_place') }}"
               class="">
 
             <select name="place" class="">
               <option value="0">過去のデータから選ぶ</option>
               @foreach ($places as $place)
-                <option value="{{ $place->place }}">{{ $place->place }}</option>
+                <option value="{{ $place->place }}" @if ($place->place == $alcohol->place) selected @endif>
+                  {{ $place->place }}
+                </option>
               @endforeach
             </select>
           </div>
@@ -84,7 +102,7 @@
           </div>
 
           <div class="">
-            <textarea name="memo" value="" cols="50%" rows="2" placeholder="メモ">{{ $alcohol->memo }}</textarea>
+            <textarea name="memo" cols="50%" rows="2" placeholder="メモ(任意)">{{ $alcohol->memo }}</textarea>
           </div>
 
           <div class="p-2 w-full flex my-8 gap-10">
