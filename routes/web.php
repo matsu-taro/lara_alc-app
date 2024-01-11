@@ -37,6 +37,8 @@ Route::prefix('alcohols')
             ->name('restore');
         Route::post('{alcohol}/dust-box_clear', 'dustBoxClear')
             ->name('dust-box_clear');
+        Route::get('images', 'imagesIndex')
+            ->name('images');
     });
 
 Route::prefix('images')

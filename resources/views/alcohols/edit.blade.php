@@ -10,11 +10,15 @@
         <div class="data-left">
           <div class="">
             <p>画像を3枚まで貼り付け可能です</p>
+            @if (session('messe'))
+              <span class="text-red-600">{{ session('messe') }}</span>
+            @endif
+
             @error('files')
               <span class="text-red-600">{{ $message }}</span>
             @enderror
             <div class="image-select">
-              <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" class="">
+              <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg">
             </div>
           </div>
           <div class="image-area">
@@ -27,7 +31,7 @@
               @foreach ($alcoholImages as $image)
                 <li class="editP-image">
                   <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
-                  <a href="{{ route('images.destroy',['image'=>$image->id]) }}" class="editP-deleteBtn">削除</a>
+                  <a href="{{ route('images.destroy', ['image' => $image->id]) }}" class="editP-deleteBtn">削除</a>
                 </li>
               @endforeach
 

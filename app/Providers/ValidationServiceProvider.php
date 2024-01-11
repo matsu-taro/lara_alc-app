@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Alcohol;
+use App\Models\Image;
 
 class ValidationServiceProvider extends ServiceProvider
 {

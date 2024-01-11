@@ -21,6 +21,15 @@ class AlcoholController extends Controller
     return view('alcohols.index', compact('alcohols', 'images'));
   }
 
+  public function imagesIndex()
+  {
+    $images = Image::all()->groupBy(function ($image) {
+      return $image->updated_at->format('Y年m月');
+    });
+
+    return view('alcohols.images', compact('images'));
+  }
+
   public function create()
   {
     $alcohols = Alcohol::where('user_id', Auth::id())->get();
@@ -33,27 +42,17 @@ class AlcoholController extends Controller
     $newPlace = $request->new_place;
     $selectedPlace = $request->place;
 
-    if ($newPlace) {
-      $alcohol = Alcohol::create([
-        'user_id' => Auth::id(),
-        'alc_name' => $request->alc_name,
-        'price' => $request->price,
-        'place' => $newPlace,
-        'status' => $request->status,
-        'type' => $request->type,
-        'memo' => $request->memo,
-      ]);
-    } elseif ($selectedPlace) {
-      $alcohol = Alcohol::create([
-        'user_id' => Auth::id(),
-        'alc_name' => $request->alc_name,
-        'price' => $request->price,
-        'place' => $selectedPlace,
-        'status' => $request->status,
-        'type' => $request->type,
-        'memo' => $request->memo,
-      ]);
-    }
+    $place = $newPlace ? $newPlace : $selectedPlace;
+
+    $alcohol = Alcohol::create([
+      'user_id' => Auth::id(),
+      'alc_name' => $request->alc_name,
+      'price' => $request->price,
+      'place' => $place,
+      'status' => $request->status,
+      'type' => $request->type,
+      'memo' => $request->memo,
+    ]);
 
     if ($request->hasFile('files')) {
       $files = $request->file('files');
@@ -108,6 +107,7 @@ class AlcoholController extends Controller
 
     $newPlace = $request->new_place;
     $selectedPlace = $request->place;
+
     if ($newPlace) {
       $update_data->place = $newPlace;
     } elseif ($selectedPlace) {
@@ -118,20 +118,27 @@ class AlcoholController extends Controller
 
     if ($request->hasFile('files')) {
       $files = $request->file('files');
+      $existingFiles = Image::where('alcohol_id', $id)->count();
+      $totalFiles = count($files) + $existingFiles;
 
-      foreach ($files as $file) {
-        $randFileName = uniqid();
-        $extension = $file->getClientOriginalExtension(); //拡張子を抽出
-        $originalFileName = $randFileName . '.' . $extension;
+      if ($totalFiles > 3) {
+        return back()->with('messe', '画像は3枚までです。');
+      } else {
 
-        $path = $file->storeAs('public/' . $originalFileName);
+        foreach ($files as $file) {
+          $randFileName = uniqid();
+          $extension = $file->getClientOriginalExtension(); //拡張子を抽出
+          $originalFileName = $randFileName . '.' . $extension;
 
-        Image::create([
-          'alcohol_id' => $update_data->id,
-          'original_file_name' => $originalFileName,
-          'path' => $path,
-        ]);
-      };
+          $path = $file->storeAs('public/' . $originalFileName);
+
+          Image::create([
+            'alcohol_id' => $update_data->id,
+            'original_file_name' => $originalFileName,
+            'path' => $path,
+          ]);
+        };
+      }
     };
 
     return to_route('alcohols.index');
