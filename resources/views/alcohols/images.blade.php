@@ -5,12 +5,23 @@
     </h2>
   </x-slot>
 
-  <div class="serch-area">
-    <p>文字から検索する</p>
-    絞り込み検索
-    <p>・タイプ</p>
-    <p>・店舗</p>
-    <p>・価格帯</p>
+  <div class="side-bar">
+    <div class="create-btn">
+      <a href="{{ route('alcohols.create') }}">
+        {{ __('新規作成') }}
+      </a>
+    </div>
+    <div class="serch-area">
+      <p>文字から検索する</p>
+      <div class="refine-serch-area">
+        <p>絞り込み検索</p>
+        <ul>
+          <li>・タイプ</li>
+          <li>・店舗</li>
+          <li>・価格帯</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="image-cards">
@@ -29,4 +40,5 @@
       </div>
     @endforeach
   </div>
+
 </x-app-layout>

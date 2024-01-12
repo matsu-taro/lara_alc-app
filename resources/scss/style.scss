@@ -85,10 +85,9 @@
 .image-area {
   border: 8px solid #552301d9;
   overflow-x: scroll;
-  width: 240px;
-  height: 427px;
+  width: 230px;
+  height: 415px;
   margin-top: 20px;
-  padding: 1px;
   background-color: #ececec;
   display: flex;
   flex-direction: column;
@@ -140,15 +139,44 @@
   }
 }
 
-.serch-area {
-  width: 200px;
-  height: 600px;
+.side-bar {
   position: fixed;
   top: 100px;
   left: 40px;
+  width: 200px;
+  padding: 8px;
+}
+
+.create-btn {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 40px;
+  transition: all .3s;
+
+  a {
+    display: block;
+    background-color: #0051ff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 100vh;
+    padding: 12px 4px;
+  }
+
+  :hover {
+    background-color: #3a78ff;
+  }
+}
+
+.serch-area {
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 8px;
+  padding: 10px;
+}
+
+.refine-serch-area {
+  margin-top: 40px;
 }
 
 .editP-image {
@@ -167,7 +195,7 @@
   border-radius: 4px;
 }
 
-.image-cards{
+.image-cards {
   margin-top: 40px;
 }
 
@@ -181,22 +209,31 @@
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-  p{
+  p {
     font-size: 20px;
     margin-top: 20px;
   }
 
   ul {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(150px);
     justify-content: center;
     padding: 10px;
     margin-bottom: 10px;
 
     li {
-      width: 30%;
-      border:1px solid #d7d7d7;
+      width: 150px;
+      height: 150px;
+      border: 1px solid #d7d7d7;
       padding: 10px;
+      overflow: hidden;
+
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 }
