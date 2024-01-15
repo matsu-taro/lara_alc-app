@@ -4,41 +4,30 @@
       {{ __('Dashboard') }}
     </h2>
   </x-slot>
-
-  <div class="side-bar">
-    <div class="create-btn">
-      <a href="{{ route('alcohols.create') }}">
-        {{ __('新規作成') }}
-      </a>
-    </div>
-    <div class="serch-area">
-      <p>文字から検索する</p>
-      <div class="refine-serch-area">
-        <p>絞り込み検索</p>
-        <ul>
-          <li>・タイプ</li>
-          <li>・店舗</li>
-          <li>・価格帯</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
+  
   <div class="image-cards">
-    @foreach ($images as $month => $monthImages)
-      <div class="image-card">
-        <p>{{ $month }}</p>
-        <ul>
-          @foreach ($monthImages as $image)
-            <li>
-              <a href="{{ route('alcohols.edit', $image->alcohols->id) }}">
-                <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
-              </a>
-            </li>
-          @endforeach
-        </ul>
-      </div>
-    @endforeach
+    @if ($images)
+      @foreach ($images as $month => $monthImages)
+        <div class="image-card">
+          <p>{{ $month }}</p>
+          <ul>
+            @foreach ($monthImages as $image)
+              @if ($image)
+                <li>
+                  <a href="{{ route('alcohols.edit', $image->alcohols->id) }}">
+                    <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
+                  </a>
+                </li>
+              @else
+                <li>画像はありません。</li>
+              @endif
+            @endforeach
+          </ul>
+        </div>
+      @endforeach
+    @else
+      <p>画像はありません。</p>
+    @endif
   </div>
 
 </x-app-layout>

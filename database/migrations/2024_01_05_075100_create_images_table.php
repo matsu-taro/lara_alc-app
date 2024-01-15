@@ -19,6 +19,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('original_file_name');
             $table->string('path');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

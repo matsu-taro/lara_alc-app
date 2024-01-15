@@ -8,20 +8,50 @@
   <div class="side-bar">
     <div class="create-btn">
       <a href="{{ route('alcohols.create') }}">
-        {{ __('新規作成') }}
+        新規作成
       </a>
     </div>
-    <div class="serch-area">
-      <p>文字から検索する</p>
-      <div class="refine-serch-area">
+
+    <div class="serch">
+      <form action="{{ route('alcohols.index') }}" method="get">
         <p>絞り込み検索</p>
         <ul>
-          <li>・タイプ</li>
-          <li>・店舗</li>
-          <li>・価格帯</li>
+          <li>
+            <input type="text" name="serch" placeholder="商品名" value="{{ old('serch') }}">
+          </li>
+          <li>
+            <select name="type" class="" style="display: block">
+              <option value="">--タイプ--</option>
+              <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>ビール</option>
+              <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>サワー・酎ハイ</option>
+              <option value="3" {{ old('type') == 3 ? 'selected' : '' }}>ワイン</option>
+              <option value="4" {{ old('type') == 4 ? 'selected' : '' }}>日本酒</option>
+              <option value="5" {{ old('type') == 5 ? 'selected' : '' }}>焼酎</option>
+              <option value="6" {{ old('type') == 6 ? 'selected' : '' }}>洋酒</option>
+              <option value="7" {{ old('type') == 7 ? 'selected' : '' }}>その他</option>
+            </select>
+          </li>
+          <li>
+            <select name="place" class="">
+              <option value="0">--お店--</option>
+              @foreach ($places as $place)
+                <option value="{{ $place->place }}" {{ old('place') == $place->place ? 'selected' : '' }}>{{ $place->place }}
+                </option>
+              @endforeach
+            </select>
+          </li>
+          <li>
+            ¥<input type="number" name="price1" value="{{ old('price1') }}">〜¥<input type="number" name="price2" value="{{ old('price2') }}">
+          </li>
         </ul>
-      </div>
+        <button class="serch-btn">検索する</button>
+      </form>
     </div>
+    @if ($refineRecord && array_filter($refineRecord))
+      <div class="" style="background-color: aliceblue;text-align:center;padding:8px 0;">
+        表示件数：{{ $total }}件
+      </div>
+    @endif
   </div>
 
   <div class="">
@@ -98,5 +128,6 @@
         </li>
       @endforeach
     </ul>
+    {{ $alcohols->links() }}
   </div>
 </x-app-layout>

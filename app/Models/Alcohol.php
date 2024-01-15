@@ -7,28 +7,42 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 use App\Models\Image;
+use Requests;
 
 class Alcohol extends Model
 {
-    use HasFactory, SoftDeletes;
+  use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'user_id',
-        'alc_name',
-        'price',
-        'place',
-        'status',
-        'type',
-        'memo',
-    ];
+  protected $fillable = [
+    'user_id',
+    'alc_name',
+    'price',
+    'place',
+    'status',
+    'type',
+    'memo',
+  ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+  public function scopeSerch($query, $serch)
+  {
+    if ($serch !== null) {
+      $serch_split = mb_convert_kana($serch, 's');
+      $serch_split2 = preg_split('/[\s]+/', $serch_split);
+      foreach ($serch_split2 as $value) {
+        $query->where('alc_name', 'like', '%' . $value . '%');
+      }
     }
 
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
+    return $query;
+  }
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+
+  public function images()
+  {
+    return $this->hasMany(Image::class);
+  }
 }

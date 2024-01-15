@@ -9,7 +9,7 @@
     <ul class="alc-cards">
       @foreach ($deleted_datas as $deleted_data)
         <li class="alc-card">
-          <a href="{{ route('alcohols.edit', ['alcohol' => $deleted_data->id]) }}" class="alc-card-inner">
+          <div class="alc-card-inner">
             <div class="alc-card-left">
 
               <div class="image-area">
@@ -64,7 +64,7 @@
                 @endif
               </p>
             </div>
-          </a>
+          </div>
 
           <div class="btns">
             <div class="restore-btn">
