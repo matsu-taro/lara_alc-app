@@ -17,14 +17,13 @@ class ImageController extends Controller
 
   public function destroy($id)
   {
-    $image = Image::findOrFail($id);
+    $image = Image::withTrashed()->findOrFail($id);
 
     if (Storage::exists($image->path)) {
       Storage::delete($image->path);
     }
 
-    Image::findOrFail($id)
-      ->delete();
+    $image->forceDelete();
 
     return back();
   }

@@ -21,7 +21,7 @@
               <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg">
             </div>
           </div>
-          <div class="image-area">
+          <div class="image-area edit-image-area">
             <ul>
               @php
                 $alcoholImages = $images->where('alcohol_id', $alcohol->id)->take(3); // 特定のアルコールに関連する画像を取得（最大3枚）

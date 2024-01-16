@@ -5,21 +5,35 @@
     </h2>
   </x-slot>
 
-  <div class="side-bar">
-    <div class="create-btn">
-      <a href="{{ route('alcohols.create') }}">
-        新規作成
-      </a>
-    </div>
+  <div class="create-btn">
+    <a href="{{ route('alcohols.create') }}">
+      <div class="create-btn-img">
+        <img src="{{ asset('storage/5.png') }}" alt="">
+      </div>
+      <p>新規作成</p>
+    </a>
+  </div>
 
+  <div class="serch-block">
     <div class="serch">
       <form action="{{ route('alcohols.index') }}" method="get">
-        <p>絞り込み検索</p>
+        <div class="serch-title">
+          <div class="serch-area-img">
+            <img src="{{ asset('storage/6.png') }}" alt="">
+          </div>
+          <p>絞り込み検索</p>
+        </div>
         <ul>
           <li>
+            <div class="serch-area-img">
+              <img src="{{ asset('storage/1.png') }}" alt="">
+            </div>
             <input type="text" name="serch" placeholder="商品名" value="{{ old('serch') }}">
           </li>
           <li>
+            <div class="serch-area-img">
+              <img src="{{ asset('storage/2.png') }}" alt="">
+            </div>
             <select name="type" class="" style="display: block">
               <option value="">--タイプ--</option>
               <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>ビール</option>
@@ -32,24 +46,40 @@
             </select>
           </li>
           <li>
+            <div class="serch-area-img">
+              <img src="{{ asset('storage/3.png') }}" alt="">
+            </div>
             <select name="place" class="">
               <option value="0">--お店--</option>
               @foreach ($places as $place)
-                <option value="{{ $place->place }}" {{ old('place') == $place->place ? 'selected' : '' }}>{{ $place->place }}
+                <option value="{{ $place->place }}" {{ old('place') == $place->place ? 'selected' : '' }}>
+                  {{ $place->place }}
                 </option>
               @endforeach
             </select>
           </li>
           <li>
-            ¥<input type="number" name="price1" value="{{ old('price1') }}">〜¥<input type="number" name="price2" value="{{ old('price2') }}">
+            <div class="serch-area-img">
+              <img src="{{ asset('storage/4.png') }}" alt="">
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center; width: 100%;">
+              <input class="serch-price" type="number" name="price1" value="{{ old('price1') }}"
+                placeholder="¥"><span>〜</span><input class="serch-price" type="number" name="price2"
+                value="{{ old('price2') }}" placeholder="¥">
+            </div>
           </li>
         </ul>
-        <button class="serch-btn">検索する</button>
+        <div class="serch-btns">
+          <button class="serch-btn">検索する</button>
+          @if ($refineRecord && array_filter($refineRecord))
+            <button type="button" onClick="history.back()" class="serch-btn">戻る</button>
+          @endif
+        </div>
       </form>
     </div>
     @if ($refineRecord && array_filter($refineRecord))
-      <div class="" style="background-color: aliceblue;text-align:center;padding:8px 0;">
-        表示件数：{{ $total }}件
+      <div class="serch-results">
+        検索結果：<span style="color: tomato;font-size:20px;margin:0 4px;">{{ $total }}</span>件
       </div>
     @endif
   </div>
@@ -58,9 +88,27 @@
     <ul class="alc-cards">
       @foreach ($alcohols as $alcohol)
         <li class="alc-card">
-          <a href="{{ route('alcohols.edit', ['alcohol' => $alcohol->id]) }}" class="alc-card-inner">
-            <div class="alc-card-left">
-
+          <p>
+            <span>
+              @if ($alcohol->type == 1)
+                ビール
+              @elseif($alcohol->type == 2)
+                サワー・酎ハイ
+              @elseif($alcohol->type == 3)
+                ワイン
+              @elseif($alcohol->type == 4)
+                日本酒
+              @elseif($alcohol->type == 5)
+                焼酎
+              @elseif($alcohol->type == 6)
+                洋酒
+              @elseif($alcohol->type == 7)
+                その他
+              @endif
+            </span>
+          </p>
+          <div class="alc-card-inner">
+            <div class="alc-card-inner-top">
               <div class="image-area">
                 <ul>
                   @php
@@ -81,42 +129,47 @@
                   @endfor
                 </ul>
               </div>
-            </div>
-            <div class="alc-card-right">
-              <p>
-                @if ($alcohol->type == 1)
-                  ビール
-                @elseif($alcohol->type == 2)
-                  サワー・酎ハイ
-                @elseif($alcohol->type == 3)
-                  ワイン
-                @elseif($alcohol->type == 4)
-                  日本酒
-                @elseif($alcohol->type == 5)
-                  焼酎
-                @elseif($alcohol->type == 6)
-                  洋酒
-                @elseif($alcohol->type == 7)
-                  その他
-                @endif
-              </p>
-              <p>{{ $alcohol->alc_name }}</p>
-              <p>¥{{ $alcohol->price }}</p>
-              <p>{{ $alcohol->place }}</p>
-              <p>
-                @if ($alcohol->status == 1)
-                  うまい！
-                @elseif($alcohol->status == 2)
-                  まあうまい
-                @elseif($alcohol->status == 3)
-                  うん、おいしい
-                @endif
-              </p>
-              <p>{{ $alcohol->memo }}</p>
-            </div>
-          </a>
 
-          <div class="gomibako-btn">
+              <div class="alc-card-right">
+                <ul>
+                  <li class="alc-card-detail">
+                    <p>名前</p>
+                    <span>{{ $alcohol->alc_name }}</span>
+                  </li>
+                  <li class="alc-card-detail">
+                    <p>値段</p>
+                    <span>¥{{ $alcohol->price }}</span>
+                  </li>
+                  <li class="alc-card-detail">
+                    <p>お店</p>
+                    <span>{{ $alcohol->place }}</span>
+                  </li>
+                  <li class="alc-card-detail">
+                    <p>おいしさ</p>
+                    <span>
+                      @if ($alcohol->status == 1)
+                        うまい！
+                      @elseif($alcohol->status == 2)
+                        まあうまい
+                      @elseif($alcohol->status == 3)
+                        うん、おいしい
+                      @endif
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="alc-card-detail alc-card-detail-memo">
+              <p>メモ</p>
+              <span>{{ $alcohol->memo }}</span>
+            </div>
+          </div>
+          <div class="alc-card-bottom">
+            <div>
+              <a href="{{ route('alcohols.edit', ['alcohol' => $alcohol->id]) }}" class="">
+                確認・編集
+              </a>
+            </div>
             <form action="{{ route('alcohols.destroy', ['alcohol' => $alcohol->id]) }}" method="POST">
               @method('delete')
               @csrf

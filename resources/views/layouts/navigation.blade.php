@@ -12,18 +12,30 @@
 
         <!-- Navigation Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex pb-1">
-          {{-- <x-nav-link :href="route('alcohols.create')" :active="request()->routeIs('alcohols.create')">
-            {{ __('新規作成') }}
-          </x-nav-link> --}}
-          <x-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
-            {{ __('リスト一覧') }}
-          </x-nav-link>
-          <x-nav-link :href="route('alcohols.images')" :active="request()->routeIs('alcohols.images')">
-            {{ __('画像から探す') }}
-          </x-nav-link>
-          <x-nav-link :href="route('alcohols.dust-box')" :active="request()->routeIs('alcohols.dust-box')">
-            {{ __('ゴミ箱') }}
-          </x-nav-link>
+          <div class="header-list">
+            <div class="header-img">
+              <img src="{{ asset('storage/7.png') }}" alt="">
+            </div>
+            <x-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
+              {{ __('リスト一覧') }}
+            </x-nav-link>
+          </div>
+          <div class="header-list">
+            <div class="header-img">
+              <img src="{{ asset('storage/8.png') }}" alt="">
+            </div>
+            <x-nav-link :href="route('alcohols.images')" :active="request()->routeIs('alcohols.images')">
+              {{ __('画像から探す') }}
+            </x-nav-link>
+          </div>
+          <div class="header-list">
+            <div class="header-img">
+              <img src="{{ asset('storage/9.png') }}" alt="">
+            </div>
+            <x-nav-link :href="route('alcohols.dust-box')" :active="request()->routeIs('alcohols.dust-box')">
+              {{ __('ゴミ箱') }}
+            </x-nav-link>
+          </div>
         </div>
       </div>
 
