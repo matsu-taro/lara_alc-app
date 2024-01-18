@@ -35,6 +35,11 @@ class AlcoholController extends Controller
       $query->whereBetween('price', [$request->price1, $request->price2]);
     }
 
+    // おいしさで絞り込み
+    if ($request->status) {
+      $query->where('status', $request->status);
+    }
+
     $alcohols = $query->where('user_id', Auth::id())
       ->orderBy('updated_at', 'desc')
       ->paginate(10);
@@ -50,6 +55,7 @@ class AlcoholController extends Controller
       $request->place ?? null,
       $request->price1 ?? null,
       $request->price2 ?? null,
+      $request->status ?? null,
     ];
 
     return view('alcohols.index', compact('alcohols', 'images', 'places', 'total', 'refineRecord'));

@@ -29,7 +29,8 @@ class Alcohol extends Model
       $serch_split = mb_convert_kana($serch, 's');
       $serch_split2 = preg_split('/[\s]+/', $serch_split);
       foreach ($serch_split2 as $value) {
-        $query->where('alc_name', 'like', '%' . $value . '%');
+        $query->orWhere('alc_name', 'like', '%' . $value . '%');
+        $query->orWhere('memo', 'like', '%' . $value . '%');
       }
     }
 

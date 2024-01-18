@@ -33,16 +33,10 @@
         <ul>
           <li>
             <div class="serch-area-img">
-              <img src="{{ asset('storage/1.png') }}" alt="">
-            </div>
-            <input type="text" name="serch" placeholder="商品名" value="{{ old('serch') }}">
-          </li>
-          <li>
-            <div class="serch-area-img">
               <img src="{{ asset('storage/2.png') }}" alt="">
             </div>
             <select name="type" class="" style="display: block">
-              <option value="">--タイプ--</option>
+              <option value="">--種類--</option>
               <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>ビール</option>
               <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>サワー・酎ハイ</option>
               <option value="3" {{ old('type') == 3 ? 'selected' : '' }}>ワイン</option>
@@ -51,6 +45,22 @@
               <option value="6" {{ old('type') == 6 ? 'selected' : '' }}>洋酒</option>
               <option value="7" {{ old('type') == 7 ? 'selected' : '' }}>その他</option>
             </select>
+          </li>
+          <li>
+            <div class="serch-area-img">
+              <img src="{{ asset('storage/1.png') }}" alt="">
+            </div>
+            <input type="text" name="serch" placeholder="商品名 or メモ" value="{{ old('serch') }}">
+          </li>
+          <li>
+            <div class="serch-area-img">
+              <img src="{{ asset('storage/4.png') }}" alt="">
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center; width: 100%;">
+              <input class="serch-price" type="number" name="price1" value="{{ old('price1') }}"
+                placeholder="¥"><span>〜</span><input class="serch-price" type="number" name="price2"
+                value="{{ old('price2') }}" placeholder="¥">
+            </div>
           </li>
           <li>
             <div class="serch-area-img">
@@ -67,13 +77,14 @@
           </li>
           <li>
             <div class="serch-area-img">
-              <img src="{{ asset('storage/4.png') }}" alt="">
+              <img src="{{ asset('storage/17.png') }}" alt="">
             </div>
-            <div style="display: flex;justify-content: center;align-items: center; width: 100%;">
-              <input class="serch-price" type="number" name="price1" value="{{ old('price1') }}"
-                placeholder="¥"><span>〜</span><input class="serch-price" type="number" name="price2"
-                value="{{ old('price2') }}" placeholder="¥">
-            </div>
+            <select name="status" class="">
+              <option value="0">--おいしさ--</option>
+              <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>うまい！</option>
+              <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>おいしい</option>
+              <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>まぁまぁかな</option>
+            </select>
           </li>
         </ul>
         <div class="serch-btns">

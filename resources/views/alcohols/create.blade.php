@@ -15,7 +15,7 @@
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
               <div class="image-select">
-                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg">
+                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%">
               </div>
               <p>画像は3枚まで貼り付け可能です</p>
             </div>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="">
-              <p>感情</p>
+              <span style="display: block">感情</span>
               <select name="status" class="">
                 <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>うまい！</option>
                 <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>おいしい</option>

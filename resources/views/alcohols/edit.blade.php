@@ -104,7 +104,7 @@
             </div>
 
             <div class="">
-              <p>感情</p>
+              <span style="display: block">感情</span>
               <select name="status" class="">
                 <option value="1" @if ($alcohol->status == '1') selected @endif>うまい！</option>
                 <option value="2" @if ($alcohol->status == '2') selected @endif>おいしい</option>

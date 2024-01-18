@@ -106,9 +106,9 @@
 
   <!-- Responsive Navigation Menu -->
   <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden hamburger-inner">
-    <div class="pt-2 pb-3 space-y-1 flex">
+    <div class="pt-2 pb-3  flex">
       <x-responsive-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
-        {{ __('リスト') }}
+        {{ __('リスト一覧') }}
       </x-responsive-nav-link>
       <x-responsive-nav-link :href="route('alcohols.images')" :active="request()->routeIs('alcohols.images')">
         {{ __('画像一覧') }}

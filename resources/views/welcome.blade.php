@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
+  @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/style.scss'])
   <!-- Styles -->
   <style>
     /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
@@ -831,28 +832,31 @@
 </head>
 
 <body class="antialiased">
-  <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen">
+  <div class="bg">
+    <img src="{{ asset('storage/alc-bg.jpg') }}" alt="">
+  </div>
+  <div class="top-page">
     @if (Route::has('login'))
-      <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 auth-btns">
+      <div class="auth-btns">
         @auth
           {{-- <a href="{{ url('/dashboard') }}"
             class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a> --}}
           <x-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
-            {{ __('トップへ') }}
+            {{ __('マイリストへ') }}
           </x-nav-link>
         @else
           <a href="{{ route('login') }}"
-            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">ログイン</a>
+            class="auth-btn">ログイン</a>
 
           @if (Route::has('register'))
             <a href="{{ route('register') }}"
-              class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">登録する</a>
+              class="auth-btn">登録する</a>
           @endif
         @endauth
       </div>
     @endif
 
-    <div class="">
+    <div class="top-img">
       <img src="{{ asset('storage/5.png') }}" alt="">
     </div>
 
