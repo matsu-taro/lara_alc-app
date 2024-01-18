@@ -11,12 +11,14 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Sriracha&display=swap" rel="stylesheet">
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/style.scss'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased body">
   <div class="min-h-screen main-body">
     @include('layouts.navigation')
 

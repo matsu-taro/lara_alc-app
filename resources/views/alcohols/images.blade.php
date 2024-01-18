@@ -4,7 +4,23 @@
       {{ __('Dashboard') }}
     </h2>
   </x-slot>
-  
+
+  <div class="create-btn">
+    <a href="{{ route('alcohols.create') }}">
+      <div class="create-btn-img">
+        <img src="{{ asset('storage/5.png') }}" alt="">
+      </div>
+      <p>新規作成</p>
+    </a>
+  </div>
+
+  <div class="sp-top-title">
+    <div class="sp-top-img">
+      <img src="{{ asset('storage/8.png') }}" alt="">
+    </div>
+    <p>画像一覧</p>
+  </div>
+
   <div class="image-cards">
     @if ($images)
       @foreach ($images as $month => $monthImages)
