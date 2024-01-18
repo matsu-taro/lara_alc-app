@@ -13,7 +13,7 @@
   </div>
 
   <div class="">
-    <ul class="alc-cards">
+    <ul class="alc-cards dust-boxs-cards">
       @foreach ($deleted_datas as $deleted_data)
         <li class="alc-card">
           <div class="type-name">
