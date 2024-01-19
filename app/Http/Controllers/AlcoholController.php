@@ -110,7 +110,7 @@ class AlcoholController extends Controller
         Image::create([
           'alcohol_id' => $alcohol->id,
           'original_file_name' => $originalFileName,
-          'path' => $path,
+          'path' => 'storage/' . $originalFileName,
         ]);
       };
     };
