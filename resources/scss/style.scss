@@ -49,7 +49,8 @@ $sp: 768px;
   margin-top: 40px;
 }
 
-.auth-btn {
+.auth-btn,
+.my-list-btn {
   display: block;
   font-size: 20px;
   font-weight: bold;
@@ -62,6 +63,10 @@ $sp: 768px;
   &:hover {
     transform: scale(1.2);
   }
+}
+
+.my-list-btn:hover{
+  border-bottom: none;
 }
 
 .top-page {
@@ -87,6 +92,7 @@ $sp: 768px;
     height: 200px;
   }
 }
+
 
 .g-login-btn {
   display: flex;
