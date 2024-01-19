@@ -157,6 +157,8 @@ $sp: 768px;
     top: 16px;
     right: 16px;
     z-index: 9999;
+    background-color: #c8c8c8;
+    border-radius: 8px;
   }
 }
 
@@ -564,7 +566,7 @@ $sp: 768px;
 
   @include sp {
     top: initial;
-    bottom: 10px;
+    bottom: 30px;
     left: 4px;
   }
 }
