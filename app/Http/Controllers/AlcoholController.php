@@ -64,10 +64,6 @@ class AlcoholController extends Controller
 
   public function imagesIndex()
   {
-    // $images = Image::all()->groupBy(function ($image) {
-    //   return $image->created_at->format('Y年m月');
-    // });
-
     $images = Image::whereHas('alcohols', function ($query) {
       $query->where('user_id', Auth::id());
     })
@@ -136,7 +132,6 @@ class AlcoholController extends Controller
   public function edit(string $id)
   {
     $places = Alcohol::where('user_id', Auth::id())->distinct()->pluck('place');
-    // $places = Alcohol::all()->unique('place');
     $alcohol = Alcohol::findOrFail($id);
 
     $alcoholIds = Alcohol::where('user_id', Auth::id())->pluck('id')->toArray();
