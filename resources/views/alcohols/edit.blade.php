@@ -35,7 +35,7 @@
                 @endphp
                 @foreach ($alcoholImages as $image)
                   <li class="editP-image">
-                    <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
+                    <img src="{{ asset('storage/imgs/' . $image->original_file_name) }}" alt="">
                     <a href="{{ route('images.destroy', ['image' => $image->id]) }}" class="editP-deleteBtn">削除</a>
                   </li>
                 @endforeach

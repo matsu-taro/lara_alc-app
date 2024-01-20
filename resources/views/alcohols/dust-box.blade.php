@@ -76,7 +76,7 @@
 
                     @foreach ($alcoholImages as $image)
                       <li>
-                        <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
+                        <img src="{{ asset('storage/imgs/' . $image->original_file_name) }}" alt="">
                       </li>
                     @endforeach
 

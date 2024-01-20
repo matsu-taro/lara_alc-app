@@ -105,12 +105,12 @@ class AlcoholController extends Controller
         $extension = $file->getClientOriginalExtension(); //拡張子を抽出
         $originalFileName = $randFileName . '.' . $extension;
 
-        $path = $file->storeAs('public' . $originalFileName);
+        $path = $file->storeAs('public/imgs/' . $originalFileName);
 
         Image::create([
           'alcohol_id' => $alcohol->id,
           'original_file_name' => $originalFileName,
-          'path' => 'storage/' . $originalFileName,
+          'path' => $path,
         ]);
       };
     };
@@ -173,7 +173,7 @@ class AlcoholController extends Controller
           $extension = $file->getClientOriginalExtension(); //拡張子を抽出
           $originalFileName = $randFileName . '.' . $extension;
 
-          $path = $file->storeAs('public/' . $originalFileName);
+          $path = $file->storeAs('public/imgs/' . $originalFileName);
 
           Image::create([
             'alcohol_id' => $update_data->id,

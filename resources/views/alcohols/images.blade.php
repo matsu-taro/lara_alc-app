@@ -31,7 +31,7 @@
               @if ($image)
                 <li>
                   <a href="{{ route('alcohols.edit', $image->alcohols->id) }}">
-                    <img src="{{ asset('storage/' . $image->original_file_name) }}" alt="">
+                    <img src="{{ asset('storage/imgs/' . $image->original_file_name) }}" alt="">
                   </a>
                 </li>
               @else
