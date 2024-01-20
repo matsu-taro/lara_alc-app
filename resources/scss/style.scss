@@ -65,7 +65,7 @@ $sp: 768px;
   }
 }
 
-.my-list-btn:hover{
+.my-list-btn:hover {
   border-bottom: none;
 }
 
@@ -190,10 +190,10 @@ $sp: 768px;
 
   ul {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     gap: 56px;
 
-    li a{
+    li a {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -526,7 +526,7 @@ $sp: 768px;
   margin: 20px auto 0;
 
   @include sp {
-    margin: 0 auto;
+    margin: 10px auto 0;
   }
 }
 
@@ -554,18 +554,18 @@ $sp: 768px;
       color: #888;
       font-size: 14px;
       margin-top: 14px;
-      
 
-      @include sp{
-        color: #ffffff;
-        text-shadow: 1px 1px #000;
+
+      @include sp {
+        display: none;
       }
     }
 
     @include sp {
       border: 6px solid #00b7ff;
-      width: 80px;
-      height: 80px;
+      width: 48px;
+      height: 48px;
+      position: relative;
     }
   }
 
@@ -576,14 +576,27 @@ $sp: 768px;
   .create-btn-img {
     width: 100px;
 
-    img{
-      @include sp{
-        margin-left: 4px;
+    .sp-none {
+      @include sp {
+        display: none;
+      }
+    }
+
+    .pc-none {
+      display: none;
+
+      @include sp {
+        display: block;
+        width: 16px;
+        position: absolute;
+        bottom: 50%;
+        right: 50%;
+        transform: translate(50%, 50%);
       }
     }
 
     @include sp {
-      width: 60px;
+      width: 40px;
     }
   }
 
@@ -599,7 +612,7 @@ $sp: 768px;
   background-color: #ebf9ff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 8px;
-  padding: 20px 10px;
+  padding: 16px 10px;
   margin-bottom: 10px;
 
   input,
@@ -650,7 +663,7 @@ $sp: 768px;
   border-radius: 8px;
   background-color: #009dff;
   display: inline-block;
-  margin-top: 24px;
+  margin-top: 16px;
   padding: 4px 8px;
   color: #fff;
 }
