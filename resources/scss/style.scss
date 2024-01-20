@@ -385,7 +385,7 @@ $sp: 768px;
 .data-right {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 
   input,
   textarea,
@@ -465,7 +465,6 @@ $sp: 768px;
       align-items: center;
       flex-shrink: 0;
       width: 100%;
-
     }
   }
 
@@ -670,8 +669,8 @@ $sp: 768px;
 
 .editP-deleteBtn {
   position: absolute;
-  top: 14%;
-  left: 4px;
+  bottom: 15%;
+  right: 4px;
   background-color: #fff;
   border: 2px solid tomato;
   color: tomato;
