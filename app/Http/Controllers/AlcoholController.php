@@ -64,9 +64,17 @@ class AlcoholController extends Controller
 
   public function imagesIndex()
   {
-    $images = Image::all()->where('user_id', Auth::id())->groupBy(function ($image) {
-      return $image->created_at->format('Y年m月');
-    });
+    // $images = Image::all()->groupBy(function ($image) {
+    //   return $image->created_at->format('Y年m月');
+    // });
+
+    $images = Image::whereHas('alcohols', function ($query) {
+      $query->where('user_id', Auth::id());
+    })
+      ->get()
+      ->groupBy(function ($image) {
+        return $image->created_at->format('Y年m月');
+      });
 
     return view('alcohols.images', compact('images'));
   }
