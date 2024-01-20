@@ -15,10 +15,32 @@
   </div>
 
   <div class="sp-top-title">
-    <div class="sp-top-img">
-      <img src="{{ asset('storage/7.png') }}" alt="">
-    </div>
-    <p>リスト</p>
+    <ul>
+      <li>
+        <a href="{{ route('alcohols.index') }}">
+          <div class="sp-top-img">
+            <img src="{{ asset('storage/7.png') }}" alt="">
+          </div>
+          <p>リスト</p>
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('alcohols.images') }}">
+          <div class="sp-top-img">
+            <img src="{{ asset('storage/8.png') }}" alt="">
+          </div>
+          <p>画像</p>
+        </a>
+      </li>
+      <li>
+        <a href="{{ route('alcohols.dust-box') }}">
+          <div class="sp-top-img">
+            <img src="{{ asset('storage/9.png') }}" alt="">
+          </div>
+          <p>ゴミ箱</p>
+        </a>
+      </li>
+    </ul>
   </div>
 
   <div class="serch-block">
@@ -88,10 +110,10 @@
           </li>
         </ul>
         <div class="serch-btns">
-          <button class="serch-btn">検索する</button>
           @if ($refineRecord && array_filter($refineRecord))
             <button type="button" onClick="history.back()" class="serch-btn">戻る</button>
           @endif
+          <button class="serch-btn">検索する</button>
         </div>
       </form>
     </div>
@@ -202,11 +224,6 @@
             </div>
           </div>
           <div class="alc-card-bottom">
-            <div>
-              <a href="{{ route('alcohols.edit', ['alcohol' => $alcohol->id]) }}" class="">
-                確認・編集
-              </a>
-            </div>
             <form action="{{ route('alcohols.destroy', ['alcohol' => $alcohol->id]) }}" method="POST">
               @method('delete')
               @csrf
@@ -214,6 +231,11 @@
                 ゴミ箱へ
               </button>
             </form>
+            <div>
+              <a href="{{ route('alcohols.edit', ['alcohol' => $alcohol->id]) }}" class="">
+                確認・編集
+              </a>
+            </div>
           </div>
         </li>
       @endforeach

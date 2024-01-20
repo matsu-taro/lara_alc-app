@@ -171,6 +171,7 @@ $sp: 768px;
     right: 0;
     background-color: rgba(255, 255, 255, .9);
     padding-top: 60px;
+    z-index: 8888;
   }
 }
 
@@ -187,19 +188,29 @@ $sp: 768px;
 .sp-top-title {
   display: none;
 
+  ul {
+    display: flex;
+    justify-content:center;
+    gap: 56px;
+
+    li a{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
   .sp-top-img {
-    width: 32px;
+    width: 24px;
   }
 
   p {
-    font-size: 20px;
     font-weight: bold;
+    border-bottom: 2px solid #006e9a;
   }
 
   @include sp {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     margin-top: 20px;
   }
 }
@@ -541,10 +552,15 @@ $sp: 768px;
     height: 120px;
 
     p {
-      color: #fff;
+      color: #888;
       font-size: 14px;
       margin-top: 14px;
-      text-shadow: 1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000;
+      
+
+      @include sp{
+        color: #ffffff;
+        text-shadow: 1px 1px #000;
+      }
     }
 
     @include sp {
@@ -561,6 +577,12 @@ $sp: 768px;
   .create-btn-img {
     width: 100px;
 
+    img{
+      @include sp{
+        margin-left: 4px;
+      }
+    }
+
     @include sp {
       width: 60px;
     }
@@ -569,7 +591,8 @@ $sp: 768px;
   @include sp {
     top: initial;
     bottom: 30px;
-    left: 4px;
+    left: initial;
+    right: 4px;
   }
 }
 
@@ -613,7 +636,8 @@ $sp: 768px;
 
 .serch-btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 40px;
   margin-left: 28px;
 
   a {

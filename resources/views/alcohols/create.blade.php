@@ -102,10 +102,10 @@
           </div>
         </div>
         <div class="p-2 w-full flex justify-center my-8 gap-20">
+          <button type="button" onClick="history.back()"
+          class=" bg-gray-300 border-0 py-2 sm:px-8 px-3 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
           <button type="submit"
             class=" text-white bg-green-500 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-green-600 rounded text-lg">作成する</button>
-          <button type="button" onClick="history.back()"
-            class=" bg-gray-300 border-0 py-2 sm:px-8 px-3 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
         </div>
       </div>
     </form>
