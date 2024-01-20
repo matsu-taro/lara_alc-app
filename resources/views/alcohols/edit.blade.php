@@ -95,8 +95,8 @@
                 <select name="place" class="">
                   <option value="0">過去のデータから選ぶ</option>
                   @foreach ($places as $place)
-                    <option value="{{ $place->place }}" @if ($place->place == $alcohol->place) selected @endif>
-                      {{ $place->place }}
+                    <option value="{{ $place }}" @if ($place == $alcohol->place) selected @endif>
+                      {{ $place }}
                     </option>
                   @endforeach
                 </select>

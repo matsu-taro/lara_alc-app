@@ -46,7 +46,7 @@ class AlcoholController extends Controller
 
     $alcoholIds = $alcohols->pluck('id')->toArray();
     $images = Image::whereIn('alcohol_id', $alcoholIds)->get();
-    $places = Alcohol::all()->unique('place');
+    $places = Alcohol::where('user_id', Auth::id())->distinct()->pluck('place');
 
     $total = $alcohols->total();
     $refineRecord = [
@@ -135,7 +135,8 @@ class AlcoholController extends Controller
 
   public function edit(string $id)
   {
-    $places = Alcohol::all()->unique('place');
+    $places = Alcohol::where('user_id', Auth::id())->distinct()->pluck('place');
+    // $places = Alcohol::all()->unique('place');
     $alcohol = Alcohol::findOrFail($id);
 
     $alcoholIds = Alcohol::where('user_id', Auth::id())->pluck('id')->toArray();

@@ -69,8 +69,8 @@
             <select name="place" class="">
               <option value="0">--お店--</option>
               @foreach ($places as $place)
-                <option value="{{ $place->place }}" {{ old('place') == $place->place ? 'selected' : '' }}>
-                  {{ $place->place }}
+                <option value="{{ $place }}" {{ old('place') == $place ? 'selected' : '' }}>
+                  {{ $place }}
                 </option>
               @endforeach
             </select>
