@@ -64,7 +64,7 @@ class AlcoholController extends Controller
 
   public function imagesIndex()
   {
-    $images = Image::all()->groupBy(function ($image) {
+    $images = Image::all()->where('user_id', Auth::id())->groupBy(function ($image) {
       return $image->created_at->format('Y年m月');
     });
 
@@ -105,7 +105,7 @@ class AlcoholController extends Controller
         $extension = $file->getClientOriginalExtension(); //拡張子を抽出
         $originalFileName = $randFileName . '.' . $extension;
 
-        $path = $file->storeAs('imgs/' . $originalFileName);
+        $path = $file->storeAs('public/imgs/' . $originalFileName);
 
         Image::create([
           'alcohol_id' => $alcohol->id,
@@ -173,7 +173,7 @@ class AlcoholController extends Controller
           $extension = $file->getClientOriginalExtension(); //拡張子を抽出
           $originalFileName = $randFileName . '.' . $extension;
 
-          $path = $file->storeAs('imgs/' . $originalFileName);
+          $path = $file->storeAs('public/imgs/' . $originalFileName);
 
           Image::create([
             'alcohol_id' => $update_data->id,
@@ -204,7 +204,7 @@ class AlcoholController extends Controller
 
   public function dustBox()
   {
-    $deleted_datas = Alcohol::onlyTrashed()->paginate(10);
+    $deleted_datas = Alcohol::onlyTrashed()->where('user_id', Auth::id())->paginate(10);
     $alcoholIds = Alcohol::onlyTrashed()->where('user_id', Auth::id())->pluck('id')->toArray();
     $images = Image::onlyTrashed()->whereIn('alcohol_id', $alcoholIds)->get();
 

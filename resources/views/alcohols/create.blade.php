@@ -88,7 +88,7 @@
             </div>
 
             <div class="">
-              <span style="display: block">感情</span>
+              <span style="display: block">おいしさ</span>
               <select name="status" class="">
                 <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>うまい！</option>
                 <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>おいしい</option>

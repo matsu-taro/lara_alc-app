@@ -541,8 +541,10 @@ $sp: 768px;
     height: 120px;
 
     p {
+      color: #fff;
       font-size: 14px;
       margin-top: 14px;
+      text-shadow: 1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000;
     }
 
     @include sp {
