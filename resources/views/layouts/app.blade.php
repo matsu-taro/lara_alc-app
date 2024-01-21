@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex , nofollow" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="shortcut icon" href="https://alc-app.matsu.works/storage/19.png">
+  <link rel="shortcut icon" href="{{ asset('storage/19.png') }}">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
