@@ -112,3 +112,36 @@
 
   </article>
 </x-app-layout>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var fileInput = document.querySelector('input[name="files[]"]');
+    var imageArea = document.querySelector('.image-area ul li');
+
+    fileInput.addEventListener('change', function(event) {
+      var files = event.target.files;
+
+      // 既存のサムネイルをクリア
+      imageArea.innerHTML = '';
+
+      // 選択された各ファイルに対して処理
+      Array.from(files).forEach(function(file) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          var thumbnail = document.createElement('img');
+          thumbnail.setAttribute('src', e.target.result);
+          thumbnail.setAttribute('alt', 'Thumbnail');
+
+          var listItem = document.createElement('li');
+          listItem.appendChild(thumbnail);
+
+          // サムネイルを表示エリアに追加
+          imageArea.appendChild(listItem);
+        };
+
+        // ファイルを読み込む
+        reader.readAsDataURL(file);
+      });
+    });
+  });
+</script>
