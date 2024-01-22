@@ -53,7 +53,7 @@
             @foreach ($monthImages as $image)
               @if ($image)
                 <li>
-                  <a href="{{ route('alcohols.edit', $image->alcohols->id) }}">
+                  <a href="{{ route('alcohols.index', ['#' . $image->alcohols->id]) }}">
                     <img src="{{ asset('storage/imgs/' . $image->original_file_name) }}" alt="">
                   </a>
                 </li>

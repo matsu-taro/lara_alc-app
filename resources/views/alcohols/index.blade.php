@@ -128,7 +128,7 @@
   <div class="">
     <ul class="alc-cards">
       @foreach ($alcohols as $alcohol)
-        <li class="alc-card">
+        <li class="alc-card" id="{{ $alcohol->id }}">
           <div class="type-name">
             @if ($alcohol->type == 1)
               <div class="type-name-icon">
