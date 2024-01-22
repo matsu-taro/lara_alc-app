@@ -1,8 +1,18 @@
 <x-app-layout>
   <article class="main">
 
+    <div class="create-btn">
+      <a href="{{ route('alcohols.create') }}">
+        <div class="create-btn-img">
+          <img src="{{ asset('storage/5.png') }}" alt="" class="sp-none">
+          <img src="{{ asset('storage/18.png') }}" alt="" class="pc-none">
+        </div>
+        <p>新規作成</p>
+      </a>
+    </div>
+
     <div class="pageTop-title">
-      <p>確認・編集</p>
+      <p>編集画面</p>
     </div>
 
     <form action="{{ route('alcohols.update', ['alcohol' => $alcohol->id]) }}" method="post" enctype="multipart/form-data"
@@ -22,11 +32,11 @@
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
               <div class="image-select">
-                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg">
+                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%">
               </div>
               <p>画像は3枚まで貼り付け可能です</p>
             </div>
-            <div class="image-area edit-image-area">
+            <div class="image-area inputP-image-area edit-image-area">
               <ul>
                 @php
                   $alcoholImages = $images->where('alcohol_id', $alcohol->id)->take(3); // 特定のアルコールに関連する画像を取得（最大3枚）

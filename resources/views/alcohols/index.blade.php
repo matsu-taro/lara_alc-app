@@ -234,7 +234,7 @@
             </form>
             <div>
               <a href="{{ route('alcohols.edit', ['alcohol' => $alcohol->id]) }}" class="">
-                確認・編集
+                編集する
               </a>
             </div>
           </div>

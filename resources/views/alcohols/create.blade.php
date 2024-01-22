@@ -15,20 +15,20 @@
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
               <div class="image-select">
-                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%">
+                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%" onchange="onChangeFileInput(this)">
               </div>
               <p>画像は3枚まで貼り付け可能です</p>
             </div>
-            <div class="image-area">
+            <div class="image-area inputP-image-area">
               <ul>
                 <li>
-                  <img src="{{ asset('storage/no-image.jpg') }}" alt="">
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" id="thumbnail">
                 </li>
                 <li>
-                  <img src="{{ asset('storage/no-image.jpg') }}" alt="">
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" id="thumbnail">
                 </li>
                 <li>
-                  <img src="{{ asset('storage/no-image.jpg') }}" alt="">
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" id="thumbnail">
                 </li>
               </ul>
             </div>
@@ -113,35 +113,44 @@
   </article>
 </x-app-layout>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var fileInput = document.querySelector('input[name="files[]"]');
-    var imageArea = document.querySelector('.image-area ul li');
+  const onChangeInputFile = (e) => {
+  if (e.target.files && e.target.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('thumbnail').setAttribute('src', e.target.result);
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  }
+};
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   var fileInput = document.querySelector('input[name="files[]"]');
+  //   var imageArea = document.querySelector('.image-area ul li');
 
-    fileInput.addEventListener('change', function(event) {
-      var files = event.target.files;
+  //   fileInput.addEventListener('change', function(event) {
+  //     var files = event.target.files;
 
-      // 既存のサムネイルをクリア
-      imageArea.innerHTML = '';
+  //     // 既存のサムネイルをクリア
+  //     imageArea.innerHTML = '';
 
-      // 選択された各ファイルに対して処理
-      Array.from(files).forEach(function(file) {
-        var reader = new FileReader();
+  //     // 選択された各ファイルに対して処理
+  //     Array.from(files).forEach(function(file) {
+  //       var reader = new FileReader();
 
-        reader.onload = function(e) {
-          var thumbnail = document.createElement('img');
-          thumbnail.setAttribute('src', e.target.result);
-          thumbnail.setAttribute('alt', 'Thumbnail');
+  //       reader.onload = function(e) {
+  //         var thumbnail = document.createElement('img');
+  //         thumbnail.setAttribute('src', e.target.result);
+  //         thumbnail.setAttribute('alt', 'Thumbnail');
 
-          var listItem = document.createElement('li');
-          listItem.appendChild(thumbnail);
+  //         var listItem = document.createElement('li');
+  //         listItem.appendChild(thumbnail);
 
-          // サムネイルを表示エリアに追加
-          imageArea.appendChild(listItem);
-        };
+  //         // サムネイルを表示エリアに追加
+  //         imageArea.appendChild(listItem);
+  //       };
 
-        // ファイルを読み込む
-        reader.readAsDataURL(file);
-      });
-    });
-  });
+  //       // ファイルを読み込む
+  //       reader.readAsDataURL(file);
+  //     });
+  //   });
+  // });
 </script>
