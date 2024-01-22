@@ -9,28 +9,35 @@
 
       <div class="data-block">
         <div class="data-block-inner">
+
           <div class="data-left">
             <div class="">
               @error('files')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
               <div class="image-select">
-                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%" onchange="onChangeFileInput(this)">
+                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%">
               </div>
               <p>画像は3枚まで貼り付け可能です</p>
             </div>
             <div class="image-area inputP-image-area">
               <ul>
-                <li>
-                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" id="thumbnail">
+                <li class="img-1">
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" class="no-image no-image1">
+                  <img src="" alt="" class="select-img select-img1">
                 </li>
-                <li>
-                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" id="thumbnail">
+                <li class="img-2">
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" class="no-image no-image2">
+                  <img src="" alt="" class="select-img select-img2">
                 </li>
-                <li>
-                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" id="thumbnail">
+                <li class="img-3">
+                  <img src="{{ asset('storage/no-image.jpg') }}" alt="" class="no-image no-image3">
+                  <img src="" alt="" class="select-img select-img3">
                 </li>
               </ul>
+            </div>
+            <div style="text-align: right;margin-top:10px;width:100%;">
+              <a href="#" class="img-select-clear">選びなおす</a>
             </div>
           </div>
 
@@ -75,7 +82,7 @@
               @enderror
               <br>
               <div>
-                <input id="new_place" type="text" name="new_place" placeholder="新しく追加"
+                <input id="new_place" type="text" name="new_place" placeholder="新しく追加する"
                   value="{{ old('new_place') }}" class="">
 
                 <select name="place" class="">
@@ -103,7 +110,7 @@
         </div>
         <div class="p-2 w-full flex justify-center my-2 gap-20">
           <button type="button" onClick="history.back()"
-          class=" bg-gray-300 border-0 py-2 sm:px-8 px-3 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
+            class=" bg-gray-300 border-0 py-2 sm:px-8 px-3 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
           <button type="submit"
             class=" text-white bg-green-500 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-green-600 rounded text-lg">作成する</button>
         </div>
@@ -113,44 +120,62 @@
   </article>
 </x-app-layout>
 <script>
-  const onChangeInputFile = (e) => {
-  if (e.target.files && e.target.files[0]) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('thumbnail').setAttribute('src', e.target.result);
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  }
-};
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var fileInput = document.querySelector('input[name="files[]"]');
-  //   var imageArea = document.querySelector('.image-area ul li');
+  document.addEventListener('DOMContentLoaded', function() {
+    var fileInput = document.querySelector('input[name="files[]"]');
+    var imageArea = document.querySelector('.image-area ul');
+    var selectClearBtn = document.querySelector('.img-select-clear');
 
-  //   fileInput.addEventListener('change', function(event) {
-  //     var files = event.target.files;
+    fileInput.addEventListener('change', function(event) {
+      var files = event.target.files;
 
-  //     // 既存のサムネイルをクリア
-  //     imageArea.innerHTML = '';
+      // すべての画像に対して初期化の処理
+      for (var i = 1; i <= 3; i++) {
+        var noImage = document.querySelector('.no-image' + i);
+        var selectImg = document.querySelector('.select-img' + i);
 
-  //     // 選択された各ファイルに対して処理
-  //     Array.from(files).forEach(function(file) {
-  //       var reader = new FileReader();
+        noImage.style.display = 'block';
+        selectImg.style.display = 'none';
+      }
 
-  //       reader.onload = function(e) {
-  //         var thumbnail = document.createElement('img');
-  //         thumbnail.setAttribute('src', e.target.result);
-  //         thumbnail.setAttribute('alt', 'Thumbnail');
+      // 選択された各ファイルに対して処理
+      Array.from(files).forEach(function(file, index) {
+        if (index < 3) {
+          var noImage = document.querySelector('.no-image' + (index + 1));
+          var selectImg = document.querySelector('.select-img' + (index + 1));
 
-  //         var listItem = document.createElement('li');
-  //         listItem.appendChild(thumbnail);
+          // 画像を表示する処理
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            noImage.style.display = 'none';
+            selectImg.src = e.target.result;
+            selectImg.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
 
-  //         // サムネイルを表示エリアに追加
-  //         imageArea.appendChild(listItem);
-  //       };
+    selectClearBtn.addEventListener('click', function() {
+      // ファイル選択をクリア
+      fileInput.value = '';
 
-  //       // ファイルを読み込む
-  //       reader.readAsDataURL(file);
-  //     });
-  //   });
-  // });
+      // サムネイルを非表示にする
+      for (var i = 1; i <= 3; i++) {
+        var noImage = document.querySelector('.no-image' + i);
+        var selectImg = document.querySelector('.select-img' + i);
+
+        noImage.style.display = 'block';
+        selectImg.style.display = 'none';
+      }
+
+      // 関連するエラーメッセージを非表示にする
+      var errorMessage = document.querySelector('.text-red-600');
+      if (errorMessage) {
+        errorMessage.style.display = 'none';
+      }
+
+      // クリアしたことを確認するためにコンソールにメッセージを表示
+      console.log('ファイルがクリアされました。');
+    });
+  });
 </script>

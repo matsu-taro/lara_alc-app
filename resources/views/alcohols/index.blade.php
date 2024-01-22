@@ -112,7 +112,7 @@
         </ul>
         <div class="serch-btns">
           @if ($refineRecord && array_filter($refineRecord))
-            <button type="button" onClick="history.back()" class="serch-btn">戻る</button>
+            <a href="{{ route('alcohols.index') }}" class="serch-btn">戻る</a>
           @endif
           <button class="serch-btn">検索する</button>
         </div>

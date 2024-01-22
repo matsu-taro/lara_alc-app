@@ -15,8 +15,8 @@
       <p>編集画面</p>
     </div>
 
-    <form action="{{ route('alcohols.update', ['alcohol' => $alcohol->id]) }}" method="post" enctype="multipart/form-data"
-      class="createP-form">
+    <form action="{{ route('alcohols.update', ['alcohol' => $alcohol->id]) }}" method="post"
+      enctype="multipart/form-data" class="createP-form">
       @method('put')
       @csrf
 
@@ -37,9 +37,9 @@
               <p>画像は3枚まで貼り付け可能です</p>
             </div>
             <div class="image-area inputP-image-area edit-image-area">
-              <ul>
+              <ul id="image-list">
                 @php
-                  $alcoholImages = $images->where('alcohol_id', $alcohol->id)->take(3); // 特定のアルコールに関連する画像を取得（最大3枚）
+                  $alcoholImages = $images->where('alcohol_id', $alcohol->id)->take(3); // 関連する画像を取得（最大3枚）
                   $imageCount = count($alcoholImages);
                   $displayedImageCount = min($imageCount, 3);
                 @endphp
@@ -52,10 +52,14 @@
 
                 @for ($i = $imageCount; $i < 3; $i++)
                   <li>
-                    <img src="{{ asset('storage/no-image.jpg') }}" alt="">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image{{ $i + 1 }}">
+                    <img src="" class="select-img select-img{{ $i + 1 }}">
                   </li>
                 @endfor
               </ul>
+            </div>
+            <div style="text-align: right;margin-top:10px;width:100%;">
+              <a href="#" class="img-select-clear">選びなおす</a>
             </div>
           </div>
 
@@ -83,7 +87,8 @@
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
               <br>
-              <input type="text" name="alc_name" placeholder="お酒の名前" value="{{ $alcohol->alc_name }}" id="name">
+              <input type="text" name="alc_name" placeholder="お酒の名前" value="{{ $alcohol->alc_name }}"
+                id="name">
             </div>
 
             <div>
@@ -99,7 +104,7 @@
               @enderror
               <br>
               <div>
-                <input id="new_place" type="text" name="new_place" placeholder="新しく追加"
+                <input id="new_place" type="text" name="new_place" placeholder="新しく追加する"
                   value="{{ old('new_place') }}" class="">
 
                 <select name="place" class="">
@@ -137,3 +142,56 @@
     </form>
   </article>
 </x-app-layout>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var fileInput = document.querySelector('input[name="files[]"]');
+    var imageList = document.getElementById('image-list');
+    var clearButton = document.querySelector('.img-select-clear');
+
+    fileInput.addEventListener('change', function(event) {
+      var files = event.target.files;
+      var displayedImageCount = Math.min(files.length, 3);
+
+      // すべての画像に対して初期化の処理
+      for (var i = 1; i <= 3; i++) {
+        var noImage = document.querySelector('.no-image' + i);
+        var selectImg = document.querySelector('.select-img' + i);
+
+        noImage.style.display = 'block';
+        selectImg.style.display = 'none';
+      }
+
+      // 選択された各ファイルに対して処理
+      Array.from(files).forEach(function(file, index) {
+        if (index < displayedImageCount) {
+          var noImage = document.querySelector('.no-image' + (index + 1));
+          var selectImg = document.querySelector('.select-img' + (index + 1));
+
+          // 画像を表示する処理
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            console.log(e.target.result);
+            noImage.style.display = 'none';
+            selectImg.src = e.target.result;
+            selectImg.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+
+    clearButton.addEventListener('click', function() {
+      var fileInput = document.querySelector('input[name="files[]"]');
+      fileInput.value = null;
+
+      // すべての画像に対して初期化の処理
+      for (var i = 1; i <= 3; i++) {
+        var noImage = document.querySelector('.no-image' + i);
+        var selectImg = document.querySelector('.select-img' + i);
+
+        noImage.style.display = 'block';
+        selectImg.style.display = 'none';
+      }
+    });
+  });
+</script>

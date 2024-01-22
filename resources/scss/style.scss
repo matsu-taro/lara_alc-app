@@ -489,16 +489,28 @@ $sp: 768px;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       flex-shrink: initial;
       width: 100%;
 
-      img{
+      .no-img{
+        width: 225px;
+        height: 100%;
+        max-height: 310px;
+        object-fit: cover;
+      }
+
+      .select-img{
+        display: none;
         width: 225px;
         height: 100%;
         max-height: 310px;
         object-fit: cover;
       }
     }
+  }
+  @include sp{
+    width: 110%;
   }
 }
 
@@ -711,14 +723,19 @@ $sp: 768px;
 
 .editP-deleteBtn {
   position: absolute;
-  bottom: 15%;
-  right: 4px;
+  bottom: 1px;
+  right: 1px;
   background-color: #fff;
   border: 2px solid tomato;
   color: tomato;
   font-weight: bold;
   padding: 2px 4px;
   border-radius: 4px;
+
+  @include sp{
+    font-size: 12px;
+    padding: 2px;
+  }
 }
 
 .image-cards {
