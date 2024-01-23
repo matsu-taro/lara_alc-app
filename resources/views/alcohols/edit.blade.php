@@ -60,7 +60,7 @@
               </ul>
             </div>
             <div class="reload-btn">
-              <a href="#" class="img-select-clear">
+              <a class="img-select-clear">
                 <div class="reload-img">
                   <img src="{{ asset('storage/20.png') }}" alt="">
                 </div>

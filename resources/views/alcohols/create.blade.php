@@ -37,7 +37,7 @@
               </ul>
             </div>
             <div class="reload-btn">
-              <a href="#" class="img-select-clear">
+              <a class="img-select-clear">
                 <div class="reload-img">
                   <img src="{{ asset('storage/20.png') }}" alt="">
                 </div>
@@ -48,7 +48,7 @@
 
           <div class="data-right">
             <div class="">
-              <span>種類</span>
+              <span>種類 <span style="color: tomato">※</span></span>
               @error('type')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -65,7 +65,7 @@
             </div>
 
             <div class="">
-              <label for="alc_name" class="leading-7 text-md text-black-600">名前</label>
+              <label for="alc_name" class="leading-7 text-md text-black-600">名前 <span style="color: tomato">※</span></label>
               @error('alc_name')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -81,7 +81,7 @@
 
             <div class="place-select-area">
 
-              <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店</label>
+              <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店 <span style="color: tomato">※</span></label>
               @error('place')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -100,7 +100,7 @@
             </div>
 
             <div class="">
-              <span style="display: block">おいしさ</span>
+              <span style="display: block">おいしさ <span style="color: tomato">※</span></span>
               <select name="status" class="">
                 <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>うまい！</option>
                 <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>おいしい</option>

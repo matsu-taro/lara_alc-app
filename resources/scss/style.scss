@@ -119,6 +119,14 @@ $sp: 768px;
   background-color: #bae8e8;
 }
 
+.header {
+  border-bottom: 2px solid #272343;
+
+  @include sp {
+    border-bottom: none;
+  }
+}
+
 .header-nav {
   display: flex;
   justify-content: center;
@@ -211,7 +219,7 @@ $sp: 768px;
 
   @include sp {
     display: block;
-    margin-top: 20px;
+    padding-top: 20px;
   }
 }
 
@@ -307,7 +315,7 @@ $sp: 768px;
     font-weight: bold;
     padding: 6px 6px;
 
-    @include sp{
+    @include sp {
       padding: 4px 6px;
     }
   }
@@ -343,7 +351,7 @@ $sp: 768px;
   text-align: center;
   font-size: 32px;
   font-weight: bold;
-  margin: 20px 0;
+  padding: 20px 0;
 }
 
 .createP-form {
@@ -522,14 +530,14 @@ $sp: 768px;
   }
 }
 
-.inputP-btn{
-  border: 2px solid ;
+.inputP-btn {
+  border: 2px solid;
   background-color: #ffd803;
   font-weight: bold;
 }
 
-.inputP-back-btn{
-  border: 2px solid ;
+.inputP-back-btn {
+  border: 2px solid;
 }
 
 .list {
@@ -576,7 +584,7 @@ $sp: 768px;
   a {
     display: block;
     padding: 4px;
-    color: #eeeeee;
+
     font-weight: bold;
   }
 }
@@ -681,6 +689,7 @@ $sp: 768px;
     margin-top: 10px;
     border: 1px solid #acd7d7;
     border-radius: 4px;
+    padding: 6px;
   }
 
   ul li {
@@ -761,7 +770,7 @@ $sp: 768px;
 .reload-btn {
   margin-top: 10px;
   width: 100%;
-  
+
   .img-select-clear {
     display: flex;
     justify-content: flex-end;
