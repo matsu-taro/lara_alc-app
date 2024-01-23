@@ -108,16 +108,16 @@
               </select>
             </div>
 
-            <div class="">
+            <div style="margin-top:20px;">
               <textarea name="memo" value="" cols="50%" rows="2" placeholder="メモ(任意)">{{ old('memo') }}</textarea>
             </div>
           </div>
         </div>
         <div class="p-2 w-full flex justify-center my-2 gap-20">
           <button type="button" onClick="history.back()"
-            class=" bg-gray-300 border-0 py-2 sm:px-8 px-3 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
+            class=" bg-gray-300 border-0 py-2 sm:px-8 px-3 focus:outline-none hover:bg-gray-400 rounded text-lg inputP-back-btn">戻る</button>
           <button type="submit"
-            class=" text-white bg-green-500 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-green-600 rounded text-lg">作成する</button>
+            class="border-0 py-2 sm:px-8 px-2 focus:outline-none rounded text-lg inputP-btn">作成する</button>
         </div>
       </div>
     </form>

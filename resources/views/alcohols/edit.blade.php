@@ -35,7 +35,7 @@
                 <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%"
                   id="fileInput">
               </div>
-              <p>画像は3枚まで貼り付け可能です</p>
+              <p>画像は3枚まで貼り付け可能です(任意)</p>
             </div>
             <div class="image-area inputP-image-area edit-image-area">
               <ul id="image-list">
@@ -71,7 +71,7 @@
 
           <div class="data-right">
             <div class="">
-              <span>種類</span>
+              <span>種類 <span style="color: tomato">※</span></span>
               @error('type')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -88,7 +88,7 @@
             </div>
 
             <div class="">
-              <label for="alc_name" class="leading-7 text-md text-black-600">名前</label>
+              <label for="alc_name" class="leading-7 text-md text-black-600">名前 <span style="color: tomato">※</span></label>
               @error('alc_name')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -104,7 +104,7 @@
             </div>
 
             <div class="place-select-area">
-              <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店</label>
+              <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店 <span style="color: tomato">※</span></label>
               @error('place')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -125,7 +125,7 @@
             </div>
 
             <div class="">
-              <span style="display: block">おいしさ</span>
+              <span style="display: block">おいしさ <span style="color: tomato">※</span></span>
               <select name="status" class="">
                 <option value="1" @if ($alcohol->status == '1') selected @endif>うまい！</option>
                 <option value="2" @if ($alcohol->status == '2') selected @endif>おいしい</option>
@@ -133,16 +133,16 @@
               </select>
             </div>
 
-            <div class="">
+            <div style="margin-top:20px;">
               <textarea name="memo" cols="50%" rows="2" placeholder="メモ(任意)">{{ $alcohol->memo }}</textarea>
             </div>
           </div>
         </div>
         <div class="p-2 w-full flex justify-center my-2 gap-20">
           <button type="button" onClick="history.back()"
-            class=" bg-gray-300 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
+            class=" bg-gray-300 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-gray-400 rounded text-lg inputP-back-btn">戻る</button>
           <button type="submit"
-            class=" text-white bg-green-500 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-green-600 rounded text-lg">更新する</button>
+            class="py-2 sm:px-8 px-2 focus:outline-none rounded text-lg inputP-btn">更新する</button>
         </div>
       </div>
     </form>

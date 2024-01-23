@@ -116,7 +116,7 @@ $sp: 768px;
 .main-body {
   padding-bottom: 100px;
   color: #474747;
-  background-image: linear-gradient(90deg, rgb(131, 193, 255), rgba(82, 98, 119, 1) 0%, rgb(226, 239, 255) 0% 0%, rgb(126, 163, 215));
+  background-color: #bae8e8;
 }
 
 .header-nav {
@@ -240,16 +240,16 @@ $sp: 768px;
 .alc-card {
   display: inline-block;
   margin-top: 10px;
-  background-color: #fff;
+  background-color: #fffffd;
   padding: 10px 32px;
+  border: 4px solid #272343;
   border-radius: 8px;
   min-width: 360px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .alc-card-inner {
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 8px;
+    padding-top: 10px;
+    // border-top: 1px solid #999;
     margin-bottom: 10px;
   }
 
@@ -285,7 +285,7 @@ $sp: 768px;
 
 .alc-card-detail {
   margin-top: 10px;
-  border: 1px solid #888;
+  border: 2px solid #272343;
   height: 68px;
   border-radius: 4px;
   width: 200px;
@@ -298,7 +298,7 @@ $sp: 768px;
     border-bottom: 1px solid #e2e2e2;
     padding: 2px 4px;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 4px 4px 0 0;
   }
 
   span {
@@ -323,7 +323,7 @@ $sp: 768px;
 .alc-card-detail-memo {
   width: 100%;
   max-width: none;
-  height: 60px;
+  height: 68px;
 
   p {
     background-color: #fff;
@@ -356,6 +356,7 @@ $sp: 768px;
   background-color: #fff;
   padding: 20px;
   margin: 0 auto;
+  border: 4px solid #272343;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
@@ -397,7 +398,7 @@ $sp: 768px;
   textarea,
   select {
     width: 75%;
-    border: 2px solid #009dff;
+    border: 2px solid #acd7d7;
     border-radius: 4px;
 
     @include sp {
@@ -415,7 +416,7 @@ $sp: 768px;
 
   div {
     width: 75%;
-    border: 2px solid #009dff;
+    border: 2px solid #acd7d7;
     border-radius: 8px;
 
     input,
@@ -431,7 +432,7 @@ $sp: 768px;
     }
 
     select {
-      border-top: 1px dotted #009dff;
+      border-top: 1px dotted #acd7d7;
       border-radius: 0 0 8px 8px;
     }
 
@@ -442,7 +443,7 @@ $sp: 768px;
 }
 
 .image-select {
-  border: 2px solid #009dff;
+  border: 2px solid #acd7d7;
   padding: 1px;
   border-radius: 4px;
   width: 280px;
@@ -521,6 +522,16 @@ $sp: 768px;
   }
 }
 
+.inputP-btn{
+  border: 2px solid ;
+  background-color: #ffd803;
+  font-weight: bold;
+}
+
+.inputP-back-btn{
+  border: 2px solid ;
+}
+
 .list {
   margin-top: 0;
 }
@@ -533,9 +544,10 @@ $sp: 768px;
   a {
     display: block;
     padding: 4px;
-    color: #eeeeee;
-    background-color: #009dff;
+    color: #272343;
+    background-color: #ffd803;
     font-weight: bold;
+    border: 2px solid #272343;
     border-radius: 4px;
   }
 
@@ -545,6 +557,7 @@ $sp: 768px;
     color: #eeeeee;
     background-color: #f74141;
     font-weight: bold;
+    border: 2px solid #272343;
     border-radius: 4px;
   }
 }
@@ -599,7 +612,6 @@ $sp: 768px;
     height: 120px;
 
     p {
-      color: #888;
       font-size: 14px;
       margin-top: 14px;
 
@@ -657,7 +669,7 @@ $sp: 768px;
 }
 
 .serch {
-  background-color: #ebf9ff;
+  background-color: #fffffd;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 8px;
   padding: 16px 10px;
@@ -667,7 +679,7 @@ $sp: 768px;
   select {
     width: 100%;
     margin-top: 10px;
-    border: 1px solid #009dff;
+    border: 1px solid #acd7d7;
     border-radius: 4px;
   }
 
@@ -708,12 +720,12 @@ $sp: 768px;
 }
 
 .serch-btn {
+  border: 2px solid #272343;
   border-radius: 8px;
-  background-color: #009dff;
+  background-color: #ffd803;
   display: inline-block;
   margin-top: 16px;
   padding: 4px 8px;
-  color: #fff;
 }
 
 .serch-results {
@@ -774,12 +786,14 @@ $sp: 768px;
   margin: 20px auto 0px;
   background-color: #fff;
   padding: 10px;
+  border: 4px solid #272343;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   p {
     font-size: 20px;
     margin-top: 10px;
+    font-weight: bold;
   }
 
   ul {
@@ -830,8 +844,8 @@ $sp: 768px;
 }
 
 footer {
-  background-color: #065d93;
-  color: #fff;
+  background-color: #fffffd;
+  box-shadow: 0px -4px 8px -8px #000;
   font-weight: bold;
   text-align: center;
   padding: 20px 0;
