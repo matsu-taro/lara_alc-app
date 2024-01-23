@@ -120,7 +120,7 @@
     </div>
     @if ($refineRecord && array_filter($refineRecord))
       <div class="serch-results">
-        検索結果：<span style="color: tomato;font-size:20px;margin:0 4px;">{{ $total }}</span>件
+        検索結果：<span style="color: tomato;font-size:20px;margin:0 4px;font-weight: bold;">{{ $total }}</span>件
       </div>
     @endif
   </div>

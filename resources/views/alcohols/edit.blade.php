@@ -51,12 +51,35 @@
                   </li>
                 @endforeach
 
-                @for ($i = $imageCount; $i < 3; $i++)
-                  <li>
-                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image{{ $i + 1 }}">
-                    <img src="" class="select-img select-img{{ $i + 1 }}">
+                @if ($imageCount == 0)
+                  <li class="input-img-li">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image1">
+                    <img src="" class="select-img select-img1">
                   </li>
-                @endfor
+                  <li class="input-img-li">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image2">
+                    <img src="" class="select-img select-img2">
+                  </li>
+                  <li class="input-img-li">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image3">
+                    <img src="" class="select-img select-img3">
+                  </li>
+                @elseif($imageCount == 1)
+                  <li class="input-img-li">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image1">
+                    <img src="" class="select-img select-img1">
+                  </li>
+                  <li class="input-img-li">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image2">
+                    <img src="" class="select-img select-img2">
+                  </li>
+                @elseif($imageCount == 2)
+                  <li class="input-img-li">
+                    <img src="{{ asset('storage/no-image.jpg') }}" class="no-image no-image1">
+                    <img src="" class="select-img select-img1">
+                  </li>
+                @elseif($imageCount == 3)
+                @endif
               </ul>
             </div>
             <div class="reload-btn">
@@ -88,7 +111,8 @@
             </div>
 
             <div class="">
-              <label for="alc_name" class="leading-7 text-md text-black-600">名前 <span style="color: tomato">※</span></label>
+              <label for="alc_name" class="leading-7 text-md text-black-600">名前 <span
+                  style="color: tomato">※</span></label>
               @error('alc_name')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -104,7 +128,8 @@
             </div>
 
             <div class="place-select-area">
-              <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店 <span style="color: tomato">※</span></label>
+              <label for="new_place" class="leading-7 text-md text-black-600">買った or 飲んだお店 <span
+                  style="color: tomato">※</span></label>
               @error('place')
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
@@ -141,8 +166,7 @@
         <div class="p-2 w-full flex justify-center my-2 gap-20">
           <button type="button" onClick="history.back()"
             class=" bg-gray-300 border-0 py-2 sm:px-8 px-2 focus:outline-none hover:bg-gray-400 rounded text-lg inputP-back-btn">戻る</button>
-          <button type="submit"
-            class="py-2 sm:px-8 px-2 focus:outline-none rounded text-lg inputP-btn">更新する</button>
+          <button type="submit" class="py-2 sm:px-8 px-2 focus:outline-none rounded text-lg inputP-btn">更新する</button>
         </div>
       </div>
     </form>
@@ -163,26 +187,34 @@
         var noImage = document.querySelector('.no-image' + i);
         var selectImg = document.querySelector('.select-img' + i);
 
-        noImage.style.display = 'block';
-        selectImg.style.display = 'none';
+        if (noImage !== null) {
+          noImage.style.display = 'block';
+        }
+        if (selectImg !== null) {
+          selectImg.style.display = 'none';
+        }
       }
 
       // 選択された各ファイルに対して処理
-      Array.from(files).forEach(function(file, index) {
-        if (index < displayedImageCount) {
-          var noImage = document.querySelector('.no-image' + (index + 1));
-          var selectImg = document.querySelector('.select-img' + (index + 1));
+      for (var i = 1; i <= displayedImageCount; i++) {
+        // 画像を表示する処理
+        var reader = new FileReader();
+        reader.onload = (function(index) {
+          return function(e) {
+            var noImage = document.querySelector('.no-image' + index);
+            var selectImg = document.querySelector('.select-img' + index);
 
-          // 画像を表示する処理
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            noImage.style.display = 'none';
-            selectImg.src = e.target.result;
-            selectImg.style.display = 'block';
+            if (noImage !== null) {
+              noImage.style.display = 'none';
+            }
+            if (selectImg !== null) {
+              selectImg.src = e.target.result;
+              selectImg.style.display = 'block';
+            }
           };
-          reader.readAsDataURL(file);
-        }
-      });
+        })(i);
+        reader.readAsDataURL(files[i - 1]);
+      }
     });
 
     clearButton.addEventListener('click', function() {
@@ -193,8 +225,12 @@
         var noImage = document.querySelector('.no-image' + i);
         var selectImg = document.querySelector('.select-img' + i);
 
-        noImage.style.display = 'block';
-        selectImg.style.display = 'none';
+        if (noImage !== null) {
+          noImage.style.display = 'block';
+        }
+        if (selectImg !== null) {
+          selectImg.style.display = 'none';
+        }
       }
     });
   });
