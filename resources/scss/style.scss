@@ -306,18 +306,24 @@ $sp: 768px;
     padding-left: 4px;
     font-weight: bold;
     padding: 6px 6px;
+
+    @include sp{
+      padding: 4px 6px;
+    }
   }
 
   @include sp {
     width: 100%;
     min-width: 100%;
     max-width: none;
+    height: auto;
   }
 }
 
 .alc-card-detail-memo {
   width: 100%;
   max-width: none;
+  height: 60px;
 
   p {
     background-color: #fff;
@@ -447,9 +453,9 @@ $sp: 768px;
   border-radius: 8px;
   overflow-x: scroll;
   overflow-y: hidden;
-  width: 225px;
+  width: 280px;
   height: auto;
-  max-height: 310px;
+  max-height: 374px;
   background-color: #85664d;
   display: flex;
   flex-direction: column;
@@ -493,14 +499,14 @@ $sp: 768px;
       flex-shrink: initial;
       width: 100%;
 
-      .no-img{
+      .no-img {
         width: 225px;
         height: 100%;
         max-height: 310px;
         object-fit: cover;
       }
 
-      .select-img{
+      .select-img {
         display: none;
         width: 225px;
         height: 100%;
@@ -509,7 +515,8 @@ $sp: 768px;
       }
     }
   }
-  @include sp{
+
+  @include sp {
     width: 110%;
   }
 }
@@ -731,10 +738,28 @@ $sp: 768px;
   font-weight: bold;
   padding: 2px 4px;
   border-radius: 4px;
+  font-size: 14px;
 
-  @include sp{
+  @include sp {
     font-size: 12px;
     padding: 2px;
+  }
+}
+
+.reload-btn {
+  margin-top: 10px;
+  width: 100%;
+  
+  .img-select-clear {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  .reload-img {
+    width: 20px;
   }
 }
 

@@ -36,8 +36,13 @@
                 </li>
               </ul>
             </div>
-            <div style="text-align: right;margin-top:10px;width:100%;">
-              <a href="#" class="img-select-clear">選びなおす</a>
+            <div class="reload-btn">
+              <a href="#" class="img-select-clear">
+                <div class="reload-img">
+                  <img src="{{ asset('storage/20.png') }}" alt="">
+                </div>
+                <span>選びなおす</span>
+              </a>
             </div>
           </div>
 

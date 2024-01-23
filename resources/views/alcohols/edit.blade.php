@@ -32,7 +32,8 @@
                 <span class="text-red-600">{{ $message }}</span>
               @enderror
               <div class="image-select">
-                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%">
+                <input type="file" name="files[]" multiple accept=".png,.jpeg,.jpg" style="width: 100%"
+                  id="fileInput">
               </div>
               <p>画像は3枚まで貼り付け可能です</p>
             </div>
@@ -58,8 +59,13 @@
                 @endfor
               </ul>
             </div>
-            <div style="text-align: right;margin-top:10px;width:100%;">
-              <a href="#" class="img-select-clear">選びなおす</a>
+            <div class="reload-btn">
+              <a href="#" class="img-select-clear">
+                <div class="reload-img">
+                  <img src="{{ asset('storage/20.png') }}" alt="">
+                </div>
+                <span>選びなおす</span>
+              </a>
             </div>
           </div>
 
@@ -144,7 +150,7 @@
 </x-app-layout>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var fileInput = document.querySelector('input[name="files[]"]');
+    var fileInput = document.getElementById('fileInput');
     var imageList = document.getElementById('image-list');
     var clearButton = document.querySelector('.img-select-clear');
 
@@ -170,7 +176,6 @@
           // 画像を表示する処理
           var reader = new FileReader();
           reader.onload = function(e) {
-            console.log(e.target.result);
             noImage.style.display = 'none';
             selectImg.src = e.target.result;
             selectImg.style.display = 'block';
@@ -181,7 +186,6 @@
     });
 
     clearButton.addEventListener('click', function() {
-      var fileInput = document.querySelector('input[name="files[]"]');
       fileInput.value = null;
 
       // すべての画像に対して初期化の処理

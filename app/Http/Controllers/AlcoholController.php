@@ -186,6 +186,8 @@ class AlcoholController extends Controller
           ]);
         };
       }
+
+      $update_data->touch();
     };
 
     return to_route('alcohols.index');
