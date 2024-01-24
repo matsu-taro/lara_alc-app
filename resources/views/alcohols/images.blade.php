@@ -45,7 +45,11 @@
   </div>
 
   <div class="image-cards">
-    @if ($images)
+    @if ($images->count() == 0)
+      <div class="empty-message">
+        <p>画像はありません。</p>
+      </div>
+    @else
       @foreach ($images as $month => $monthImages)
         <div class="image-card">
           <p>{{ $month }}</p>
@@ -64,8 +68,6 @@
           </ul>
         </div>
       @endforeach
-    @else
-      <p>画像はありません。</p>
     @endif
   </div>
 

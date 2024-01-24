@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequest;
 use App\Models\Alcohol;
 use App\Models\Image;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -125,7 +124,7 @@ class AlcoholController extends Controller
 
   public function show(string $id)
   {
-    //
+    //web.phpでexcept('show')済み
   }
 
 

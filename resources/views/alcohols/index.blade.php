@@ -126,6 +126,11 @@
   </div>
 
   <div class="">
+    @if ($alcohols->count() == 0)
+      <div class="empty-message">
+        <p>リストは0件です。<br>新しく作りましょう！</p>
+      </div>
+    @else
     <ul class="alc-cards">
       @foreach ($alcohols as $alcohol)
         <li class="alc-card" id="{{ $alcohol->id }}">
@@ -241,6 +246,7 @@
         </li>
       @endforeach
     </ul>
+    @endif
     {{ $alcohols->links() }}
   </div>
 </x-app-layout>

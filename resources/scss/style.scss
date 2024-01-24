@@ -756,7 +756,7 @@ $sp: 768px;
 }
 
 .serch-results {
-  background-color: #ebf9ff;
+  background-color: rgba(255,255,255,.8);
   border-radius: 8px;
   text-align: center;
   padding: 10px 0;
@@ -854,6 +854,21 @@ $sp: 768px;
     @include sp {
       grid-template-columns: repeat(3, 100px);
     }
+  }
+}
+
+.empty-message{
+  margin-top: 40px;
+  text-align: center;
+
+  p{
+    display: inline-block;
+    font-size: 20px;
+    color: #000;
+    padding: 10px 16px;
+    background-color: rgba(255,255,255,.8);
+    border: 2px solid #272343;
+    border-radius: 4px;
   }
 }
 
