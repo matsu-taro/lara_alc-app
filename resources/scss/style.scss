@@ -271,6 +271,7 @@ $sp: 768px;
 
     @include sp {
       flex-direction: column;
+      gap: 0;
     }
   }
 
