@@ -305,7 +305,7 @@ $sp: 768px;
   overflow: hidden;
 
   p {
-    background-color: #feffbe;
+    background-color: rgba(255, 216, 3, .5);
     border-bottom: 1px solid #e2e2e2;
     padding: 2px 4px;
     font-size: 14px;
@@ -314,8 +314,6 @@ $sp: 768px;
 
   span {
     display: block;
-    padding-left: 4px;
-    font-weight: bold;
     padding: 6px 6px;
 
     @include sp {
@@ -756,7 +754,7 @@ $sp: 768px;
 }
 
 .serch-results {
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(255, 255, 255, .8);
   border-radius: 8px;
   text-align: center;
   padding: 10px 0;
@@ -857,16 +855,16 @@ $sp: 768px;
   }
 }
 
-.empty-message{
+.empty-message {
   margin-top: 40px;
   text-align: center;
 
-  p{
+  p {
     display: inline-block;
     font-size: 20px;
     color: #000;
     padding: 10px 16px;
-    background-color: rgba(255,255,255,.8);
+    background-color: rgba(255, 255, 255, .8);
     border: 2px solid #272343;
     border-radius: 4px;
   }
