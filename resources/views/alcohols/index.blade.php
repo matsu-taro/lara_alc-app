@@ -46,13 +46,13 @@
 
   <div class="serch-block">
     <div class="serch">
-      <form action="{{ route('alcohols.index') }}" method="get">
-        <div class="serch-title">
-          <div class="serch-area-img">
-            <img src="{{ asset('storage/6.png') }}" alt="">
-          </div>
-          <p>絞り込み検索</p>
+      <div class="serch-title">
+        <div class="serch-area-img">
+          <img src="{{ asset('storage/6.png') }}" alt="">
         </div>
+        <p>絞り込み検索</p>
+      </div>
+      <form action="{{ route('alcohols.index') }}" method="get" class="acd-menu-inner">
         <ul>
           <li>
             <div class="serch-area-img">
