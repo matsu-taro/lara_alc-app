@@ -25,7 +25,7 @@
               <img src="{{ asset('storage/8.png') }}" alt="">
             </div>
             <x-nav-link :href="route('alcohols.images')" :active="request()->routeIs('alcohols.images')">
-              {{ __('画像から探す') }}
+              {{ __('画像一覧') }}
             </x-nav-link>
           </div>
           <div class="header-list">
