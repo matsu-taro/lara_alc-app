@@ -1,6 +1,10 @@
 ## サービス概要
 
 https://alc-app.matsu.works/
+  
+テストアカウントはこちら
+【メールアドレス】test@test.com  
+【パスワード】password
 
 ## 機能一覧
 * ユーザー情報の登録 / ログイン機能
