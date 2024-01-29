@@ -2,7 +2,7 @@
 
 https://alc-app.matsu.works/
   
-テストアカウントはこちら
+テストアカウントはこちら  
 【メールアドレス】test@test.com  
 【パスワード】password
 
