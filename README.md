@@ -37,5 +37,10 @@ https://alc-app.matsu.works/
 * Docker / Docker Compose
 ### 本番環境
 レンタルサーバーへのデプロイ（Xサーバー） 
+### PCスペック
+* MacBook Pro
+* Sonoma 14.1.2
+* Apple M1 Pro
+* メモリ: 16GB
 ## ER図  
 ![ER図](https://alc-app.matsu.works/storage/er.jpg)
