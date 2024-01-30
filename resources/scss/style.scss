@@ -464,8 +464,7 @@ $sp: 768px;
   overflow-x: scroll;
   overflow-y: hidden;
   width: 280px;
-  height: auto;
-  max-height: 374px;
+  height: 380px;
   background-color: #272343;
   display: flex;
   flex-direction: column;
@@ -490,11 +489,11 @@ $sp: 768px;
   }
 
   &::-webkit-scrollbar {
-    height: 4px;
+    height: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #272343;
+    background-color: #f6d101;
     border-radius: 100vh;
   }
 
