@@ -38,18 +38,14 @@ Route::prefix('alcohols')
             ->name('restore');
         Route::post('{alcohol}/dust-box_clear', 'dustBoxClear')
             ->name('dust-box_clear');
-        Route::get('images', 'imagesIndex')
-            ->name('images');
     });
 
 Route::prefix('images')
     ->controller(ImageController::class)
     ->name('images.')
     ->group(function () {
-        Route::post('/index', 'index')
+        Route::get('/index', 'index')
             ->name('index');
-        Route::post('{image}/store', 'store')
-            ->name('store');
         Route::get('{image}/destroy', 'destroy')
             ->name('destroy');
     });

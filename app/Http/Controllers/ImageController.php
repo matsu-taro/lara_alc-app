@@ -12,6 +12,15 @@ class ImageController extends Controller
 {
   public function index()
   {
+    $images = Image::whereHas('alcohols', function ($query) {
+      $query->where('user_id', Auth::id());
+    })
+      ->get()
+      ->groupBy(function ($image) {
+        return $image->created_at->format('Y年m月');
+      });
+
+    return view('alcohols.images', compact('images'));
   }
 
 

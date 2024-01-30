@@ -9,7 +9,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ route('alcohols.images') }}">
+      <a href="{{ route('images.index') }}">
         <div class="sp-top-img">
           <img src="{{ asset('storage/8.png') }}" alt="">
         </div>

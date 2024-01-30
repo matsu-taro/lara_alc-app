@@ -24,7 +24,7 @@
             <div class="header-img">
               <img src="{{ asset('storage/8.png') }}" alt="">
             </div>
-            <x-nav-link :href="route('alcohols.images')" :active="request()->routeIs('alcohols.images')">
+            <x-nav-link :href="route('images.index')" :active="request()->routeIs('images.index')">
               {{ __('画像一覧') }}
             </x-nav-link>
           </div>
@@ -97,7 +97,7 @@
       <x-responsive-nav-link :href="route('alcohols.index')" :active="request()->routeIs('alcohols.index')">
         {{ __('リスト一覧') }}
       </x-responsive-nav-link>
-      <x-responsive-nav-link :href="route('alcohols.images')" :active="request()->routeIs('alcohols.images')">
+      <x-responsive-nav-link :href="route('images.index')" :active="request()->routeIs('images.index')">
         {{ __('画像一覧') }}
       </x-responsive-nav-link>
       <x-responsive-nav-link :href="route('alcohols.dust-box')" :active="request()->routeIs('alcohols.dust-box')">
