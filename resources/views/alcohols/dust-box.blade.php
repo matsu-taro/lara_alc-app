@@ -119,11 +119,11 @@
                 </a>
               </div>
               <div class="gomibako-btn">
-                <form action="{{ route('alcohols.dust-box_clear', ['alcohol' => $deleted_data->id]) }}" method="POST">
+                <form action="{{ route('alcohols.dust-box_clear', ['alcohol' => $deleted_data->id]) }}" method="POST" id="delete_{{ $deleted_data->id }}">
                   @csrf
-                  <button>
+                  <a class="forceDelete" href="#" data-id="{{ $deleted_data->id }}" onclick="deletePost(this)">
                     完全に削除
-                  </button>
+                  </a>
                 </form>
               </div>
             </div>
@@ -132,4 +132,12 @@
       </ul>
     @endif
   </div>
+  <script>
+    function deletePost(e) {
+      'use strict'
+      if (confirm('完全に削除していいですか？')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+      }
+    }
+  </script>
 </x-app-layout>
