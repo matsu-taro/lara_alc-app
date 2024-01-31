@@ -193,7 +193,7 @@
               <form action="{{ route('alcohols.destroy', ['alcohol' => $alcohol->id]) }}" method="POST">
                 @method('delete')
                 @csrf
-                <button>
+                <button class="softDelete">
                   ゴミ箱へ
                 </button>
               </form>
